@@ -1,3 +1,23 @@
+Constructions(chapters are all called constructions):
+
+1. Colored circle: pentagon and hexagon and subsets 
+2. Tilings.  Penrose and triangle, cardboard and paper, paint and colored pencil, self replicating, 2d and 3d but all based on same core
+3. Logarithmic spiral construction, log of the log of the log, sticks with logs logs with sticks
+4. tetrahedral geometry with sticks which grows and changes, rope and rocks, plastic bags, structures of all kinds based on stick tetrahedra with gravity and rope and sticks for fasteners
+5. Pendulum geometry without drive, rocks on ropes on sticks
+6. pendulum geometry driven by flowing water, observe the fluctuations, find geometry of periods and chaos, create attractors for both chaotic and not chaotic solutions
+7. two dimensional wave solutions with rocks and rope and sticks and water drive
+8. magnetic field geometry
+9. electric field geometry
+10. vortex filament geometry, vortices in general
+11. dissipation geometry
+12. concept of tangent and derivative from geometric perspective 
+13. 
+
+
+each page self replicates, is part of a greater whole and evolves, is physical, no more computers.
+
+
 Subjects of Applied Guerrilla Geometry:
 
 - two dimensional constructions with compass and straight edge
