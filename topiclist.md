@@ -19,11 +19,11 @@ geometry of value, build out geometric structures that are made of human values 
 - differential geometry of minimal surfaces, use in construction etc. applications to life: cell membranes
 - geometry studied with optics, construction and measurement of lenses by hand, creating optical art that depicts the light lines thru the lenses
 - geometry of ripples of water. Built it, measure it, depict it and USE it to drive chemical reactions
-geometry of heat equation, study of temperature flow through rocks suspended over a fire.  The study of the heat equation should involve hand carving stone to different shapes, suspending at different heights over a flame, and observing the shape of temperature in and around the object. this can be united with fluid flow studies, observing how air moves around the stone and flame.
-geometry of heat equation II: larger scale, build and study and rebuild dwelling spaces and measure heat flow, study, repeat, build up a applied geometry that optimizes heat flow in human dwelling structures
-geometry of ion flow in a fluid measured with the musical electrochemical probe
-geometry of technological reproduction: do experiments in the propagation of technical artifacts, graph it, make more, adjust the technology to build geometry that works well, overlap and contrast with capitalist “supply chains”
-geometry of geography, how to project and construct maps of ALL kinds by hand, and reproduce and store them
-geometry of data: store data in different physical forms and retrieve it, in artistic way, investigate: stone, wood, plastic, metal, sand, dirt, many sizes and shapes and densities
-geometric investigation of Hamiltonian and Lagrangian dynamics, applications to the planets, Kepler’s laws, etc
-geometry of capitalist bullshit: how to echo the existing design ethos using geometry without copying them, just make neat stuff
+- geometry of heat equation, study of temperature flow through rocks suspended over a fire.  The study of the heat equation should involve hand carving stone to different shapes, suspending at different heights over a flame, and observing the shape of temperature in and around the object. this can be united with fluid flow studies, observing how air moves around the stone and flame.
+- geometry of heat equation II: larger scale, build and study and rebuild dwelling spaces and measure heat flow, study, repeat, build up a applied geometry that optimizes heat flow in human dwelling structures
+- geometry of ion flow in a fluid measured with the musical electrochemical probe
+- geometry of technological reproduction: do experiments in the propagation of technical artifacts, graph it, make more, adjust the technology to build geometry that works well, overlap and contrast with capitalist “supply chains”
+- geometry of geography, how to project and construct maps of ALL kinds by hand, and reproduce and store them
+- geometry of data: store data in different physical forms and retrieve it, in artistic way, investigate: stone, wood, plastic, metal, sand, dirt, many sizes and shapes and densities
+- geometric investigation of Hamiltonian and Lagrangian dynamics, applications to the planets, Kepler’s laws, etc
+- geometry of capitalist bullshit: how to echo the existing design ethos using geometry without copying them, just make neat stuff
