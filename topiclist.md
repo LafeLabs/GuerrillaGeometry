@@ -1,3 +1,50 @@
+Title: Adventure Geometry
+
+
+I think this is looking like the following books:
+
+- Manifesto(done, free pdf and cheap print copy)
+Guerrilla Geometry(hand copied, taught orally, distributed physically with structures, also youtube vids and pdf for backup)
+- Ion Magic(Electronics and Electromagnetism, back to pdf format with detailed design files for all the electronics, this is both measurement and fabrication in fluids, high voltage work , coils and magnets, E&M from artistic perspective without numeric bullshit)
+- creek, tides, waves and wind machines.  this will be based on extensive time camping on the water around sticks and studying historical mine technology texts
+- fluctuations and noise and oscillations:  mechanical and electrical
+- Memoir of a Trash Wizard, autobiography
+- Physical interfaces with living systems using the above techniques
+
+
+So all the musical instrument bullshit and the ion transport measurement bullshit and the noise bullshit and the creek bullshit and biology bullshit goes later.  And now I must focus on the elements of a new geometry.
+
+Each thing in the book is a physical construction which self replicates with help from people.  Construction sets are meant to be  self contained with documentation and the physical thing.  Copies of book should correspond to copies of all geometric constructions.  All constructions should be able to scale up or down as more participants add to them.  
+
+Some of these elements are:
+
+- plane geometric art using compass and straightedge and colored pencils
+- three dimensional fabrication using cardboard based on 2d geometry
+- three dimensional fabrication with plastic, welding with a candle and pliers
+- three dimensional fabrication with sticks
+- physical construction and use of logarithms
+- conic sections and light: parabola, hyperbola, ellipse, construct solar concentrator using parabolic triangle technology and reflectors and a suspended stone crucible, parabola of a projectile compared to projection
+- geometric optics: lenses and gratings, diffraction, all as art project, use of tiny ball lenses from trash
+- geometry carved in stone
+- studies in surface roughness and interaction with fluids flowing along - surfaces:plastic, wood, stone, grinding and polishing, also motion of grains of sand and other particles of all sizes on roughnesses of all levels, studies of stiction
+- rope and stake geometry, laying out huge patterns on a field, then going up high to look down at it
+- three dimensional rope and stake geometry for relating hiding  places in a complex urban environment
+- tensegrity study with sticks
+- using buildings in urban skyline to do geometry/geography to navigate in a city, triangle lattices around, build unique coordinate set, integrate with rope and stake geometry
+- kite construction using triangles
+- flash mob structure construction and destruction using various triangles
+- fractal study of our direct physical environment, try to connect all scales from 1 angstrom to 1 meter using some type of geometric connection
+- geometric fluid studies using artistic concepts, both liquid and gas, study vortex geometry the old fashioned way, study the old work from the late 1800s
+- religious architecture of all denominations and geometry, study of local buildings
+- A study of the concept of the tangent line, real vs. make believe
+- geometric study of the pendulum, use to build a time base, create patterns from swinging rocks and some form of ink
+
+
+All the work on electric and magnetic fields gets pushed off to the E&M book.  All the work on plastic and wood and stone machines driven by water goes to the book on creek tech.  Various motors and vibrators get pushed to the oscillations and fluctuations book.   Any serious creek work is pushed to that as well.  Studies of the creek will be all about moving rocks and observing and drawing.  This is about understanding the creek as a mathematical system to set up actually using it in later volumes.
+
+
+
+
 Constructions(chapters are all called constructions):
 
 1. Colored circle: pentagon and hexagon and subsets 
@@ -12,7 +59,10 @@ Constructions(chapters are all called constructions):
 10. vortex filament geometry, vortices in general
 11. dissipation geometry
 12. concept of tangent and derivative from geometric perspective 
-13. 
+13. fluctuations and noise
+14. resonance
+15. impedance, dissipation and noise
+16. negative differential resistance, oscillators from dc, electrical and mechanical and both this is where we diverge from the digital computers and microfab chips and start using nonlinear slime blobs for all computing by having nonlinear elements that can show negative differential resistance
 
 
 each page self replicates, is part of a greater whole and evolves, is physical, no more computers.
