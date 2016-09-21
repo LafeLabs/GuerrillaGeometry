@@ -17,15 +17,15 @@ void setup(){
 void draw(){
   h = sqrt(3)*side/2;
   r = 2*h/3;
-  background(255);
+  background(255,255,255);
   stroke(0);
   if(triangleChain.length != 0){
-    fill(255,0,0);
+    fill(0,0,0);
     for(int index = 0;index < triangleChain.length/6;index++){
       triangle(triangleChain[6*index + 0],triangleChain[6*index + 1],triangleChain[6*index + 2],triangleChain[6*index + 3],triangleChain[6*index + 4],triangleChain[6*index + 5]);  
     }
   }
-  fill(0,0,255);
+  fill(0,0,0);
   makeTriangle();
   triangle(currentTriangle[0],currentTriangle[1],currentTriangle[2],currentTriangle[3],currentTriangle[4],currentTriangle[5]);
   println((theta/(2*PI)));
