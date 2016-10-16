@@ -27,3 +27,7 @@ buying physical books without an installation happens directly from Lulu and Ama
 ## Impact
 
 Self replicating art is the substrate on which self replicating technology can be built, for a free world. I want to build a movement that is the opposite of terrorism.  In terrorism, violence is used to enforce one political or religious ideology, independent of technology and art.  I want to create things that freely replicate and produce based on a union of technology art and life, totally independent of ideology, politics and religion, based on a non-authoritarian architecture.  Geometry is universal.  It is in all religions, all engineering, all art, all design, all social structures, all geography, etc.  So to build self replicating geometric art that does useful things is the pure polar opposite of terrorism.  
+
+## vectors
+
+make video, give to maker on paper as shortened url
