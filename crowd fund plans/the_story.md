@@ -5,7 +5,7 @@
 3. we need new models that shift the philosophy of industrial production, which should be about creating feedback loops that connect the human mind, human body, physical world, living world, and other humans. visual: map colored in showing how these things relate   
 4. To make these models of freedom and abundance we need to build geometric structures of value and things, and make things replicate using humans, animals and the energy and things around us.  We must directly convert trash into useful things, in a way we can easily teach to others that they will enjoy working on. visual:  self replication montage 
 5. The goals are food, medicine, shelter, heating and cooling, materials, transport, communication, and a good life, and some of the machines that will be built are:motors, coolers, heaters, movers of things, storers of things, machines for making things, etc. visual: montage of useful machines flashing through fast with quick words of identity
-6. It all starts with self replicating geometric art.  This can be a building block for the rest of it.  To build a world without money and without capitalism I cannot sell this work or put it anywhere in the property system.  And yet I need federal reserve debt currency to survive physically in the existing system while I work on this.  So I'm asking for donations as well as money to deploy this technology to spread whatever your brand or idea or art or technology is using the power of self-replication.  I can do crowd funded custom public deployments, classes, events, and branded custom deployments for companies, schools, government agencies, non profits and religious institutions.  Some of the details are listed below, and there are links to the existing installations and information on future potential ones.  visuals: examples of deployments both real and imagined, corporate custom stuff referenced, description of awards with visuals to back it up, description of what I"ll do regardless
+6. It all starts with self replicating geometric art built from trash.  This can be a building block for the rest of it.  To build a world without money and without capitalism I cannot sell this work or put it anywhere in the property system.  And yet I need federal reserve debt currency to survive physically in the existing system while I work on this.  So I'm asking for donations as well as money to deploy this technology to spread whatever your brand or idea or art or technology is using the power of self-replication.  I can do crowd funded custom public deployments, classes, events, and branded custom deployments for companies, schools, government agencies, non profits and religious institutions.  Some of the details are listed below, and there are links to the existing installations and information on future potential ones.  visuals: examples of deployments both real and imagined, corporate custom stuff referenced, description of awards with visuals to back it up, description of what I"ll do regardless
 
 
 ## Awards
@@ -24,10 +24,28 @@ buying physical books without an installation happens directly from Lulu and Ama
  - custom branded installation in a chain store(ask for quote)
  
  
+ 
 ## Impact
 
-Self replicating art is the substrate on which self replicating technology can be built, for a free world. I want to build a movement that is the opposite of terrorism.  In terrorism, violence is used to enforce one political or religious ideology, independent of technology and art.  I want to create things that freely replicate and produce based on a union of technology art and life, totally independent of ideology, politics and religion, based on a non-authoritarian architecture.  Geometry is universal.  It is in all religions, all engineering, all art, all design, all social structures, all geography, etc.  So to build self replicating geometric art that does useful things is the pure polar opposite of terrorism.  
+Self replicating geometric art is the substrate on which self replicating technology can be built, for a free world. I want to build a movement that is the opposite of terrorism.  In terrorism, violence is used to enforce one political or religious ideology, independent of technology and art.  I want to create things that freely replicate and produce based on a union of technology art and life, totally independent of ideology, politics and religion, based on a non-authoritarian architecture.  Geometry is universal.  It is in all religions, all engineering, all art, all design, all social structures, all geography, etc.  So to build self replicating geometric art that does useful things is the pure polar opposite of terrorism.  
 
 ## vectors
 
 make video, give to maker on paper as shortened url
+
+
+## milestones and targets
+
+ - 10,25,50,100 daily demos
+ - another 10,25,50 instructibles
+ - tablet and phone app for octal codes deployed and being used for self documentation
+ - self replicating artBox deployed
+ - action geometry e-book with/without documentation of deploying all parts as self replication
+ - action geometry with/without physical book(in both cases do the version that simply describes what to do first, then the documented feedback loop which incorporates deploying the things with the book describing that.)
+ - deploy motor, self replicating among user/makers
+ - deploy EC probe, same, both are intended to actually show trash magic system of value working, with tales and lore embedded in the things, which are all built for free, and gain value and quality as they spread, which they do virally without centralized infrastructure or even documentation
+ 
+ If this works, I will no longer need funding after this stage because I will be able to use my role as a maker/user in the network of other maker/users of the core set of artBox, motor and EC Probe, and those value geometries should have the capacity to support me and others not just in terms of fed debt currency to survive capitalism but values outside capitalism and an ability to actually survive as other key elements of a technological complete set are created and spread by others who join in the value geometries.  I think a goal of starting this transition in 2020 or so is reasonable.  
+
+ 
+
