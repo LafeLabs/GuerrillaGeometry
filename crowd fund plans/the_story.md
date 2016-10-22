@@ -40,6 +40,9 @@ make video, give to maker on paper as shortened url
  - 10,25,50,100 daily demos
  - another 10,25,50 instructibles
  - tablet and phone app for octal codes deployed and being used for self documentation
+ - tablet and phone app adds words-on-pictures format files which are accessed using shape codes
+ - augmented reality, networked with other app users
+ - same but on a trash magic platform instead of capitalist rectangle(10 years from now)
  - self replicating artBox deployed
  - action geometry e-book with/without documentation of deploying all parts as self replication
  - action geometry with/without physical book(in both cases do the version that simply describes what to do first, then the documented feedback loop which incorporates deploying the things with the book describing that.)
