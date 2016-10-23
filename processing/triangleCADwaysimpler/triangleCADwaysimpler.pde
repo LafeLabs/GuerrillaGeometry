@@ -17,18 +17,9 @@ void setup(){
 }
 
 void draw(){
-  move(0);
-  move(4);
- for(int localIndex = 0;localIndex < 8;localIndex++){
-      setColor(localIndex);
-      drawTriangle();
-      zoom(-1);
-      move(2);
-  }
 
+  drawTriangle();
   
-
-  noLoop();
 }
 
 void drawTriangle(){
@@ -79,4 +70,60 @@ void move(int localDirection){
 
 void zoom(int localZoomFactor){
  scale *= pow(scaleFactor,float(localZoomFactor));
+}
+
+void keyPressed(){
+  if(key == '+'){
+     zoom(1); 
+  }
+  if(key == '-'){
+     zoom(-1); 
+  }
+  if(key == 'o'){
+    orientation *= -1;
+  }
+  if(key == 'd'){
+     move(0);
+  }
+  if(key == 'x'){
+     move(1);
+  }
+  if(key == 'z'){
+     move(2);
+  }
+  if(key == 'a'){
+     move(3);
+  }
+  if(key == 'w'){
+     move(4);
+  }
+  if(key == 'e'){
+     move(5);
+  }
+  if(key == '0'){
+     setColor(0);
+  }
+  if(key == '1'){
+     setColor(1);
+  }
+  if(key == '2'){
+     setColor(2);
+  }
+  if(key == '3'){
+     setColor(3);
+  }
+  if(key == '4'){
+     setColor(4);
+  }
+  if(key == '5'){
+     setColor(5);
+  }
+  if(key == '6'){
+     setColor(6);
+  }
+  if(key == '7'){
+     setColor(7);
+  }
+
+  
 }
