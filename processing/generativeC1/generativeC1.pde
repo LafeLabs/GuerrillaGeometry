@@ -3,6 +3,7 @@ float[] angleArray = {0.5*PI + 0,0.5*PI + 2*PI/3,0.5*PI + 2*2*PI/3};
 float h = sqrt(3)*side/2;
 float r = 2.0*h/3.0;
 float x,y;
+float phi = (1+sqrt(5))/2;//1.618
 
 void setup(){
   size(500,500);      
@@ -42,7 +43,11 @@ void draw(){
   x -= side;
   y += side;
   rect(x,y,side,side);
-  
+
+  fill(255,255,0);
+  y += side/2;
+  x -= side/2;
+  triangle(x,y,x+2*side,y,x + side,y + 2*phi*side);
 
   noLoop();
 }
