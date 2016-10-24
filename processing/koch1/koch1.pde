@@ -1,12 +1,12 @@
 
-float side = 50;
+float side = 350;
 float side0 = side;
 float minSide = 1;
 float maxSide = 500;
 float scale = 1;
 float minScale = 0.001;
 float maxScale = 10;
-float scaleFactor = 2; //factor by which a scale operation happens
+float scaleFactor = 3; //factor by which a scale operation happens
 int angleIndex;
 int orientation = 1; //values are 1 and -1
 float x,y,x0,y0;
@@ -16,23 +16,55 @@ float phi = (sqrt(5) + 1)/2;
 int[] shapeCodeArray = {};  // initialize  shape array
 int currentShapeCode = 1;
 
-int shape = 1; //0 is triangle, 1 is square,2 is golden section
+int shape = 0; //0 is triangle, 1 is square,2 is golden section
 
 void setup(){//copied directly from triangles
    size(600,600); 
    background(255);
    x = width/2 - side/2;
-   y = height/2 - side/2;
+   y = height/2 + side/3;
    orientation = 1;
    angleIndex = 0;
+   setColor(0);
+  drawShape();
+  orientation *= -1;
+  zoom(-1);
+  move(0);
+  drawShape();
+  move(5);
+  move(5);
+  drawShape();
+  move(3);
+  move(3);
+  drawShape();
+  orientation *= -1;
+  zoom(-1);
+  move(0);
+  drawShape();
+  move(5); 
+  move(5);
+  move(0);
+  orientation *= -1;
+  drawShape();
+  move(0);
+  move(0);
+  drawShape();
+
 }
 
 void draw(){
+
 
   drawShape();
 
 }
 
+void drawSquare(){
+  rect(x,y,scale*side,scale*side);   
+}
+void drawTriangle(){
+  triangle(x,y,x +scale*side*cos(radians(60)),y - orientation*scale*side*sin(radians(60)),x+ scale*side,y+0);   
+}
 
 void drawShape(){
   switch(shape){
