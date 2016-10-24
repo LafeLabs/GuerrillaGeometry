@@ -7,28 +7,38 @@ float scale = 1;
 float minScale = 0.001;
 float maxScale = 10;
 float scaleFactor = 2; //factor by which a scale operation happens
-int angleIndex;
+
 int orientation = 1; //values are 1 and -1
 float x,y,x0,y0;
 color currentColor = color(255,255,0);
 
-float phi = (sqrt(5) + 1)/2;
-
-
-int shape = 0; //0 is triangle, 1 is square
+int shape = 1; //0 is triangle, 1 is square
 
 void setup(){//copied directly from triangles
    size(600,600); 
    background(255);
-   x = width/2 - side/2;
-   y = height/2 + side/2;
+   x = width/2 ;
+   y = height/2;
+   x0 = x;
+   y0 = y;
    orientation = 1;
-   angleIndex = 0;
+   shape = 1;
 }
 
 void draw(){
-
+  
+  
+for(int zoomIndex = 0;zoomIndex < 10;zoomIndex++){  
+  setColor(int(random(9)));
+  zoom(-1);
+  move(int(random(4)));
   drawShape();
+  delay(10);
+
+}
+  resetButton();
+
+//  noLoop();
 
 }
 
@@ -49,7 +59,6 @@ void drawShape(){
       break;   
    case 2: //Golden Section, but not really, i have the value of phi wrong randomly
       triangle(x,y,x + scale*side,y,x + 0.5*scale*side,y + scale*side*1.5);
-      triangle(x,y,x+side*cos(0 + angleIndex*2*PI/5),y+side*sin(0 + angleIndex*(2*PI/5)),x +side*phi*cos((angleIndex+1)*2*PI/5),y + side*phi*sin((angleIndex+1)*2*PI/5));
       break;
   }
 }
@@ -60,10 +69,6 @@ void resetButton(){
   orientation  = 1;
   x = x0;
   y = y0;
-}
-
-void rotateShape(int localAngleIndex){
-    angleIndex += localAngleIndex;
 }
 
 void setColor(int colorNumber){//copied directly from triangles
@@ -114,8 +119,8 @@ void move(int localDirection){
       y += scale*side*sin(radians(localDirection*90));
       break;
     case 2:
-      x += scale*side*cos(radians(localDirection*72));
-      y += scale*side*sin(radians(localDirection*72));
+      x += scale*side*cos(radians(localDirection*90));
+      y += 1.5*scale*side*sin(radians(localDirection*90));
       break;
   }
   if(x > width){
@@ -232,11 +237,4 @@ void keyPressed(){
   if(key == 'c'){//clear
     background(255);
   }
-  if(key == 'r'){
-     rotateShape(1); 
-  }
-    if(key == 'l'){
-     rotateShape(-1); 
-  }
-
 }
