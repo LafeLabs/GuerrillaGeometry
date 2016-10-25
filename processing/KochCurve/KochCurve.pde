@@ -4,7 +4,7 @@ float r_innner = h/3;
 float r_outer = 2*h/3;  
 int orientation = 0; //0 or 1, indicates adding orientation*PI to all angles in shape
 float scale = 1;
-float scaleFactor = 2;
+float scaleFactor = 3;
 float x,y,x0,y0;
 
 int[] zeroColor = {0,0,0};  //black
@@ -25,6 +25,9 @@ int currentShapeCode = 0;
 
 int shrinkDirection = 1;//1 or -1
 int shrinkIndex = 0;
+
+int[] shrinkDirectionArray = {-1,-1,-1,-1,-1,-1};
+int shrinkDirectionByte = 0;
 
 void setup(){
   size(500,500);
@@ -49,8 +52,33 @@ void setup(){
 
 void draw(){
 
-  drawTriangle();
-
+  
+  noStroke();
+  setColor(0);
+  writeTriangle();
+ 
+   for(shrinkDirectionByte = 0;shrinkDirectionByte < 32;shrinkDirectionByte++){   
+     for(int bitIndex = 0;bitIndex < 6;bitIndex++){
+         shrinkDirectionArray[bitIndex] = 2*(1&(shrinkDirectionByte>>bitIndex)) - 1;
+         println(shrinkDirectionArray[bitIndex]);
+      }
+      
+  
+     for(int countZooms = 0;countZooms < 6;countZooms++){
+        move((1 + shrinkIndex)%3);
+        zoomIn((0 + shrinkIndex)%3);
+        move((2 + shrinkIndex)%3);
+        writeTriangle();
+        shrinkIndex += shrinkDirectionArray[countZooms];
+        print(shrinkIndex);
+     }
+     resetButton();
+     writeTriangle();
+  
+     
+     
+   }
+  noLoop();
 }
 
 void resetButton(){
@@ -59,7 +87,7 @@ void resetButton(){
    scale = 1;
    orientation = 0;
    setColor(0);
-   background(255);
+  // background(255);
 }
 void drawTriangle(){
   triangle(x + scale*r_outer*cos(orientation*PI + PI/2),y + scale*r_outer*sin(orientation*PI + PI/2),x + scale*r_outer*cos(orientation*PI + PI/2 + 2*PI/3),y + scale*r_outer*sin(orientation*PI + PI/2 + 2*PI/3),x + scale*r_outer*cos(orientation*PI + PI/2 + 4*PI/3),y + scale*r_outer*sin(orientation*PI + PI/2 + 4*PI/3));
@@ -102,6 +130,7 @@ void zoomIn(int localZoomIndex){
     
   }
 }
+
 
 
 void zoomOut(int localZoomIndex){
