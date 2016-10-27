@@ -1,3 +1,6 @@
+//purity of essenence
+//precious bodily fluids
+
 float side = 30;
 float scale = 1;
 float scaleFactor = 5;  //2 for standard CAD, 5 for drawing the glyphs
@@ -15,6 +18,25 @@ int[] upperLeftGlyph = {0331,0313,0364};
 int[] upperRightGlyph = {0333,0313,0360};
 int[] lowerLeftGlyph= {0351,0313,0324};
 int[] lowerRightGlyph= {0353,0313,0320};
+int[] upArrowGlyph = {0312,0331,0344,0344,0313,0362,0313,0340,0313,0344,0344,0313,0340,0362,0340,0340,0313,0344,0313,0344,0313,0344,0313,0344,0313,0340,0340,0362,0313,0362,0313,0340,0340,0324};
+int[] rightArrowGlyph = {0312,0331,0362,0362,0313,0344,0313,0344,0322,0322,0313,0362,0313,0362,0313,0362,0313,0362,0313,0322,0344,0313,0322,0313,0322,0313,0362,0344,0313,0322,0322,0360};
+int[] downArrowGlyph = {0312,0331,0344,0344,0313,0362,0313,0362,0340,0340,0313,0344,0313,0344,0313,0344,0313,0344,0313,0340,0362,0313,0340,0313,0340,0313,0344,0362,0313,0344,0344,0320};
+int[] leftArrowGlyph = {0312,0331,0362,0362,0313,0344,0322,0313,0362,0313,0362,0313,0362,0344,0313,0322,0313,0322,0313,0322,0313,0322,0313,0362,0362,0344,0313,0344,0313,0362,0362,0320};
+int[] resetGlyph = {0312,0331,0344,0362,0313,0362,0313,0362,0313,0344,0313,0344,0313,0322,0313,0322,0313,0340,0313,0322,0340,0340,0364};
+int[] fillGlyph = {0312,0331,0344,0313,0362,0340,0313,0362,0362,0362,0313,0344,0322,0313,0322,0344,0313,0322,0344,0313,0322,0344,0313,0362,0362,0362,0313,0340,0362,0313,0344,0320};
+int[] outlineGlyph = {0340,0300,0331,0344,0344,0344,0344,0313,0362,0313,0362,0313,0362,0313,0362,0313,0344,0313,0344,0313,0344,0313,0344,0313,0322,0313,0322,0313,0322,0313,0322,0313,0340,0313,0340,0313,0340,0313,0340,0364};
+int[] deleteGlyph = {0312,0331,0313,0344,0362,0313,0344,0362,0313,0344,0362,0313,0344,0362,0313,0320,0351,0313,0344,0322,0313,0344,0322,0313,0344,0322,0313,0344,0322,0313,0360};
+
+int[] blackGlyph = {0300};
+int[] brownGlyph = {0301};
+int[] redGlyph = {0302};
+int[] orangeGlyph = {0303};
+int[] yellowGlyph = {0304};
+int[] greenGlyph = {0305};
+int[] blueGlyph = {0306};
+int[] violetGlyph = {0307};
+int[] greyGlyph = {0310};
+int[] whiteGlyph = {0311};
 
 int[] zeroColor = {0,0,0};  //black
 int[] oneColor = {127,0,0};   //brown
@@ -50,9 +72,8 @@ void setup(){
   colorArray = concat(colorArray,eightColor);
   colorArray = concat(colorArray,nineColor);
 
-  shapeCodeArray = concat(shapeCodeArray,minusGlyph);
-  shapeCodeArray = concat(shapeCodeArray,lowerLeftGlyph);
-
+  shapeCodeArray = concat(shapeCodeArray,deleteGlyph);
+   
   
 }
 
@@ -109,6 +130,57 @@ void mouseClicked() {
   }
   else{
   }
+  
+}
+
+int[] rotateCW(int[] localArray){
+  int[] outputArray = {};
+  for(int localArrayIndex = 0;localArrayIndex < localArray.length;localArrayIndex++){
+    if(localArray[localArrayIndex] == 0344){
+     outputArray = append(outputArray,0363);
+    }
+    if(localArray[localArrayIndex] == 0362){
+      outputArray = append(outputArray,0340);
+    }
+    if(localArray[localArrayIndex] == 0340){
+      outputArray = append(outputArray,0322);
+    }
+    if(localArray[localArrayIndex] == 0322){
+      outputArray = append(outputArray,0344);
+    }
+    if(localArray[localArrayIndex] == 0320){
+      outputArray = append(outputArray,0324);
+    }
+    if(localArray[localArrayIndex] == 0324){
+      outputArray = append(outputArray,0364);
+    }
+    if(localArray[localArrayIndex] == 0364){
+      outputArray = append(outputArray,0360);
+    }
+    if(localArray[localArrayIndex] == 0360){
+      outputArray = append(outputArray,0320);
+    }
+    if(localArray[localArrayIndex] == 0331){
+      outputArray = append(outputArray,0333);
+    }
+    if(localArray[localArrayIndex] == 0333){
+      outputArray = append(outputArray,0353);
+    }
+    if(localArray[localArrayIndex] == 0353){
+      outputArray = append(outputArray,0351);
+    }
+    if(localArray[localArrayIndex] == 0351){
+      outputArray = append(outputArray,0331);
+    } 
+    if(localArray[localArrayIndex] == 0313){
+      outputArray = append(outputArray,0313);
+    } 
+    if(localArray[localArrayIndex] == 0312){
+      outputArray = append(outputArray,0312);
+    } 
+
+  }
+  return outputArray;
   
 }
 
@@ -218,5 +290,4 @@ void doTheThing(int localByte){
   case 0364:  //grow to the lower right
      scale *= scaleFactor;
   }
-  
 }
