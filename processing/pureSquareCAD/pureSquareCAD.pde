@@ -24,19 +24,19 @@ int[] downArrowGlyph = {0312,0331,0344,0344,0313,0362,0313,0362,0340,0340,0313,0
 int[] leftArrowGlyph = {0312,0331,0362,0362,0313,0344,0322,0313,0362,0313,0362,0313,0362,0344,0313,0322,0313,0322,0313,0322,0313,0322,0313,0362,0362,0344,0313,0344,0313,0362,0362,0320};
 int[] resetGlyph = {0312,0331,0344,0362,0313,0362,0313,0362,0313,0344,0313,0344,0313,0322,0313,0322,0313,0340,0313,0322,0340,0340,0364};
 int[] fillGlyph = {0312,0331,0344,0313,0362,0340,0313,0362,0362,0362,0313,0344,0322,0313,0322,0344,0313,0322,0344,0313,0322,0344,0313,0362,0362,0362,0313,0340,0362,0313,0344,0320};
-int[] outlineGlyph = {0340,0300,0331,0344,0344,0344,0344,0313,0362,0313,0362,0313,0362,0313,0362,0313,0344,0313,0344,0313,0344,0313,0344,0313,0322,0313,0322,0313,0322,0313,0322,0313,0340,0313,0340,0313,0340,0313,0340,0364};
+int[] outlineGlyph = {0340,0300,0331,0344,0344,0344,0344,0344,0313,0362,0313,0362,0313,0362,0313,0362,0313,0344,0313,0344,0313,0344,0313,0344,0313,0322,0313,0322,0313,0322,0313,0322,0313,0340,0313,0340,0313,0340,0313,0340,0364};
 int[] deleteGlyph = {0312,0331,0313,0344,0362,0313,0344,0362,0313,0344,0362,0313,0344,0362,0313,0320,0351,0313,0344,0322,0313,0344,0322,0313,0344,0322,0313,0344,0322,0313,0360};
 
-int[] blackGlyph = {0300};
-int[] brownGlyph = {0301};
-int[] redGlyph = {0302};
-int[] orangeGlyph = {0303};
-int[] yellowGlyph = {0304};
-int[] greenGlyph = {0305};
-int[] blueGlyph = {0306};
-int[] violetGlyph = {0307};
-int[] greyGlyph = {0310};
-int[] whiteGlyph = {0311};
+int[] blackGlyph = {0300,0313};
+int[] brownGlyph = {0301,0313};
+int[] redGlyph = {0302,0313};
+int[] orangeGlyph = {0303,0313};
+int[] yellowGlyph = {0304,0313};
+int[] greenGlyph = {0305,0313};
+int[] blueGlyph = {0306,0313};
+int[] violetGlyph = {0307,0313};
+int[] greyGlyph = {0310,0313};
+int[] whiteGlyph = {0311,0313};
 
 int[] zeroColor = {0,0,0};  //black
 int[] oneColor = {127,0,0};   //brown
@@ -78,26 +78,24 @@ void setup(){
 }
 
 void draw(){
+   background(255);
    drawButtons();
-   drawShapeArray();
+   //drawShapeArray(fillGlyph);
    drawCursor();
-   doTheThing(0342);
-
 }
 
 
 void drawCursor(){
-  noFill();
+   noFill();
    rect(x,y,scale*side,scale*side); 
-    setColor(colorIndex);
-
+   setColor(colorIndex);
+  
 }
 
-void drawShapeArray(){
-  for(int shapeArrayIndex = 0;shapeArrayIndex < shapeCodeArray.length;shapeArrayIndex++){
-    doTheThing(shapeCodeArray[shapeArrayIndex]);
+void drawShapeArray(int[] localShapeCodeArray){
+  for(int shapeArrayIndex = 0;shapeArrayIndex < localShapeCodeArray.length;shapeArrayIndex++){
+    doTheThing(localShapeCodeArray[shapeArrayIndex]);
   }
-  
 }
 
 void drawButtons(){
@@ -108,7 +106,66 @@ void drawButtons(){
     }
   }
   setColor(colorIndex);
-  
+  x=0;
+  y=0;
+  drawShapeArray(blackGlyph);
+  x+=side;
+  drawShapeArray(brownGlyph);
+  x+=side;
+  drawShapeArray(redGlyph);
+  x+=side;  
+  drawShapeArray(orangeGlyph);
+  x+=side;  
+  drawShapeArray(yellowGlyph);
+  x+=side;  
+  drawShapeArray(greenGlyph);
+  x+=side;
+  drawShapeArray(blueGlyph);
+  x+=side;
+  drawShapeArray(violetGlyph);
+  x =0;
+  y += side;
+  drawShapeArray(greyGlyph);
+  x += side;
+  drawShapeArray(whiteGlyph);
+  x += side;
+  drawShapeArray(outlineGlyph);
+  x += side;
+  drawShapeArray(fillGlyph);
+  x += side;
+  drawShapeArray(deleteGlyph);
+  x = 0;
+  y += side;
+  drawShapeArray(plusGlyph);
+  x += 2*side;
+  drawShapeArray(upArrowGlyph);
+  x += 2*side;
+  drawShapeArray(plusGlyph);
+  y += side;
+  x = side;
+  drawShapeArray(minusGlyph);
+  x += 2*side;  
+  drawShapeArray(minusGlyph);
+  x = 0;
+  y += side;
+  drawShapeArray(leftArrowGlyph);
+  x += 2*side;
+  drawShapeArray(resetGlyph);
+  x += 2*side;
+  drawShapeArray(rightArrowGlyph);
+  y += side;
+  x = side;
+  drawShapeArray(minusGlyph);
+  x += 2*side;  
+  drawShapeArray(minusGlyph);
+  y += side;
+  x = 0;
+  drawShapeArray(plusGlyph);
+  x += 2*side;
+  drawShapeArray(downArrowGlyph);
+  x += 2*side;
+  drawShapeArray(plusGlyph);
+
 }
 
 void printOctal(int localByte){
@@ -124,7 +181,7 @@ void mouseClicked() {
      int sixtyfours = 3;
      buttonByte = ones + 8*eights + 64*sixtyfours;
      printOctal(buttonByte);
-//     doTheThing(buttonByte);
+     doTheThing(buttonByte);
      shapeCodeArray = append(shapeCodeArray,buttonByte);
      println(shapeCodeArray.length);
   }
@@ -133,56 +190,6 @@ void mouseClicked() {
   
 }
 
-int[] rotateCW(int[] localArray){
-  int[] outputArray = {};
-  for(int localArrayIndex = 0;localArrayIndex < localArray.length;localArrayIndex++){
-    if(localArray[localArrayIndex] == 0344){
-     outputArray = append(outputArray,0363);
-    }
-    if(localArray[localArrayIndex] == 0362){
-      outputArray = append(outputArray,0340);
-    }
-    if(localArray[localArrayIndex] == 0340){
-      outputArray = append(outputArray,0322);
-    }
-    if(localArray[localArrayIndex] == 0322){
-      outputArray = append(outputArray,0344);
-    }
-    if(localArray[localArrayIndex] == 0320){
-      outputArray = append(outputArray,0324);
-    }
-    if(localArray[localArrayIndex] == 0324){
-      outputArray = append(outputArray,0364);
-    }
-    if(localArray[localArrayIndex] == 0364){
-      outputArray = append(outputArray,0360);
-    }
-    if(localArray[localArrayIndex] == 0360){
-      outputArray = append(outputArray,0320);
-    }
-    if(localArray[localArrayIndex] == 0331){
-      outputArray = append(outputArray,0333);
-    }
-    if(localArray[localArrayIndex] == 0333){
-      outputArray = append(outputArray,0353);
-    }
-    if(localArray[localArrayIndex] == 0353){
-      outputArray = append(outputArray,0351);
-    }
-    if(localArray[localArrayIndex] == 0351){
-      outputArray = append(outputArray,0331);
-    } 
-    if(localArray[localArrayIndex] == 0313){
-      outputArray = append(outputArray,0313);
-    } 
-    if(localArray[localArrayIndex] == 0312){
-      outputArray = append(outputArray,0312);
-    } 
-
-  }
-  return outputArray;
-  
-}
 
 void setColor(int colorSelectLocal){
    colorIndex = colorSelectLocal;
