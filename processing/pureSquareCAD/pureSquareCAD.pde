@@ -1,11 +1,21 @@
 float side = 30;
 float scale = 1;
-float scaleFactor = 2;
+float scaleFactor = 5;  //2 for standard CAD, 5 for drawing the glyphs
 float x,y,x0,y0;
 int buttonByte = 0;
 
 String[] shapeCodeEnglishDescriptions = new String[128];
 String[] shapeCodeASCIIshifted = new String[128];
+int[] shapeCodeArray = {};
+
+
+int[] minusGlyph = {0312,0331,0362,0362,0344,0313,0344,0313,0344,0313,0322,0340,0340,0322,0344,0344,0344,0360};
+int[] plusGlyph = {0312,0331,0362,0362,0344,0313,0344,0322,0313,0362,0362,0313,0322,0313,0344,0313,0322,0340,0340,0322,0340,0364};
+int[] upperLeftGlyph = {0331,0313,0364};
+int[] upperRightGlyph = {0333,0313,0360};
+int[] lowerLeftGlyph= {0351,0313,0324};
+int[] lowerRightGlyph= {0353,0313,0320};
+
 int[] zeroColor = {0,0,0};  //black
 int[] oneColor = {127,0,0};   //brown
 int[] twoColor = {255,0,0};   //red
@@ -29,7 +39,7 @@ void setup(){
   x0 = x;
   y0 = y;
   
-    colorArray = concat(colorArray,zeroColor);
+  colorArray = concat(colorArray,zeroColor);
   colorArray = concat(colorArray,oneColor);
   colorArray = concat(colorArray,twoColor);
   colorArray = concat(colorArray,threeColor);
@@ -40,12 +50,18 @@ void setup(){
   colorArray = concat(colorArray,eightColor);
   colorArray = concat(colorArray,nineColor);
 
+  shapeCodeArray = concat(shapeCodeArray,minusGlyph);
+  shapeCodeArray = concat(shapeCodeArray,lowerLeftGlyph);
+
+  
 }
 
 void draw(){
-
    drawButtons();
+   drawShapeArray();
    drawCursor();
+   doTheThing(0342);
+
 }
 
 
@@ -56,6 +72,12 @@ void drawCursor(){
 
 }
 
+void drawShapeArray(){
+  for(int shapeArrayIndex = 0;shapeArrayIndex < shapeCodeArray.length;shapeArrayIndex++){
+    doTheThing(shapeCodeArray[shapeArrayIndex]);
+  }
+  
+}
 
 void drawButtons(){
   noFill();
@@ -81,7 +103,9 @@ void mouseClicked() {
      int sixtyfours = 3;
      buttonByte = ones + 8*eights + 64*sixtyfours;
      printOctal(buttonByte);
-     doTheThing(buttonByte);
+//     doTheThing(buttonByte);
+     shapeCodeArray = append(shapeCodeArray,buttonByte);
+     println(shapeCodeArray.length);
   }
   else{
   }
@@ -137,24 +161,28 @@ void doTheThing(int localByte){
      //delete a byte from the commandarray
      break;
    case 0320: //scale up, upper left
+     x += scale*side;
+     y += scale*side;
+     scale *= scaleFactor;
      x -= scale*side;
      y -= scale*side;
-     scale *= scaleFactor;
+  
      break;
    case 0322: // move up
      y -= scale*side;
      break;
    case 0324: //scale up, upper right
-     x += scale*side;
-     y -= scale*side;
+     y += scale*side;
      scale *= scaleFactor;
+     y -= scale*side;
      break;
    case 0331: //scale down uppper left
      scale /= scaleFactor;
      break;
-   case 333: //scale down upper right
-     x += scale*side;
-     scale /= scaleFactor;     
+   case 0333: //scale down upper right
+      x += scale*side;
+      scale /= scaleFactor;     
+      x -= scale*side;
      break;
    case 0340:  //move left
      x -= scale*side;
@@ -180,11 +208,12 @@ void doTheThing(int localByte){
      x -= scale*side;
      break;
   case 0360: //grow to the lower left
-     x -= scale*side;
+     x += scale*side;
      scale *= scaleFactor;
+     x -= scale*side;
      break;
   case 0362:  //move down
-     y -= scale*side;
+     y += scale*side;
      break;
   case 0364:  //grow to the lower right
      scale *= scaleFactor;
