@@ -9,7 +9,7 @@ int buttonByte = 0;
 
 String[] shapeCodeEnglishDescriptions = new String[128];
 String[] shapeCodeASCIIshifted = new String[128];
-int[] shapeCodeArray = {};
+int[] shapeCodeArray = {0342};
 
 
 int[] minusGlyph = {0312,0331,0362,0362,0344,0313,0344,0313,0344,0313,0322,0340,0340,0322,0344,0344,0344,0360};
@@ -72,7 +72,7 @@ void setup(){
   colorArray = concat(colorArray,eightColor);
   colorArray = concat(colorArray,nineColor);
 
-  shapeCodeArray = concat(shapeCodeArray,deleteGlyph);
+//  shapeCodeArray = concat(shapeCodeArray,deleteGlyph);
    
   
 }
@@ -80,7 +80,7 @@ void setup(){
 void draw(){
    background(255);
    drawButtons();
-   //drawShapeArray(fillGlyph);
+   drawShapeArray(shapeCodeArray);
    drawCursor();
 }
 
@@ -99,6 +99,8 @@ void drawShapeArray(int[] localShapeCodeArray){
 }
 
 void drawButtons(){
+  scale = 1;
+  scaleFactor = 5;
   noFill();
     for(int rowIndex = 0;rowIndex < 8;rowIndex++){
     for(int columnIndex = 0;columnIndex < 8;columnIndex++){
@@ -165,7 +167,8 @@ void drawButtons(){
   drawShapeArray(downArrowGlyph);
   x += 2*side;
   drawShapeArray(plusGlyph);
-
+  scaleFactor = 2;
+  scale = 1;
 }
 
 void printOctal(int localByte){
@@ -238,6 +241,8 @@ void doTheThing(int localByte){
      break;
    case 0314:
      //delete a byte from the commandarray
+     shapeCodeArray = shorten(shapeCodeArray);
+     
      break;
    case 0320: //scale up, upper left
      x += scale*side;
