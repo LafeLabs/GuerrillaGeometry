@@ -2,7 +2,8 @@ float x,y,x0,y0;
 float side,scale,scaleFactor;
 
 
-int[] mainGlyphArray = {0314};
+int[] mainGlyphArray = {0314,0303,0303,0300};
+int[] upFractalize = {0314,0313,0312,0307,0301,0307,0304,0300};
 
 void setup(){
   rectMode(CENTER);
@@ -15,6 +16,10 @@ void setup(){
   x = x0;
   y = y0;
   background(255); 
+ // mainGlyphArray = concat(mainGlyphArray,upFractalize);
+  //mainGlyphArray = concat(mainGlyphArray,rotateGlyph(upFractalize));
+ // mainGlyphArray = concat(mainGlyphArray,rotateGlyph(rotateGlyph(upFractalize)));
+  //mainGlyphArray = concat(mainGlyphArray,rotateGlyph(rotateGlyph(rotateGlyph(upFractalize))));
 }
 
 
@@ -232,4 +237,41 @@ void printOctal(int localByte){
    print((localByte >> 6)&7); //sixtyfours
    print((localByte >> 3)&7);//eights
    println(localByte &7);//ones
+}
+
+int[] rotateGlyph(int[] inputArray){
+  int[] outputArray = {};
+  for(int rotateIndex = 0;rotateIndex < inputArray.length;rotateIndex++){
+    outputArray = append(outputArray,inputArray[rotateIndex]);
+  }
+  for(int rotateIndex = 0;rotateIndex < inputArray.length;rotateIndex++){
+    if(inputArray[rotateIndex] == 0304){
+      outputArray[rotateIndex] = 0305;
+    }
+    if(inputArray[rotateIndex] == 0305){
+      outputArray[rotateIndex] = 0306;
+    }
+    if(inputArray[rotateIndex] == 0306){
+      outputArray[rotateIndex] = 0307;
+    }
+    if(inputArray[rotateIndex] == 0307){
+      outputArray[rotateIndex] = 0304;
+    }
+    if(inputArray[rotateIndex] == 0310){
+      outputArray[rotateIndex] = 0311;
+    }
+    if(inputArray[rotateIndex] == 0311){
+      outputArray[rotateIndex] = 0312;
+    }
+    if(inputArray[rotateIndex] == 0312){
+      outputArray[rotateIndex] = 0313;
+    }
+    if(inputArray[rotateIndex] == 0313){
+      outputArray[rotateIndex] = 0310;
+    }
+    
+  }
+
+  
+ return outputArray; 
 }

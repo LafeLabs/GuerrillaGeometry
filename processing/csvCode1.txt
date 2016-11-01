@@ -1,0 +1,64 @@
+0300, setBlack
+0301, setWhite
+0302, fillIn
+0303, outline
+0304, deleteCommand
+0305, deleteWholeGlyph
+0306, 
+0307, noCopyRight
+0310,
+0311, moveNorthNorthWest
+0312,
+0313, moveNorthNorthEast
+0314,
+0315, northWestHalfSquare
+0316, southernQuarterSquare
+0317, northEastHalfSquare
+0320, moveWestNorthWest
+0321, moveNorthWest
+0322, moveNorth
+0323, moveNorthEast
+0324, moveEastNorthEast
+0325, easternQuarterSquare
+0326, wholeSquare
+0327, westernQuarterSquare
+0330,
+0331, moveWest
+0332, restartPosition
+0333, moveEast
+0334,
+0335, southWestHalfSquare
+0336, northernQuarterSquare
+0337, southEastHalfSquare
+0340, moveWestSouthWest
+0341, moveSouthWest
+0342, moveSouth
+0343, moveSouthEast
+0344, moveEastSouthEast
+0345, pointNorthEquilateralTriangle
+0346, twoXZoomIn
+0347, fourXZoomIn
+0350,
+0351, moveSouthSouthWest
+0352,
+0353, moveSouthSouthEast
+0354,
+0355, pointSouthEquilateralTriangle
+0356, twoXZoomOut
+0357, fourXZoomOut
+0360, fullCircle
+0361,
+0362,
+0363,
+0364, pointWestEquilateralTriangle
+0365, pointEastEquilateralTriangle
+0366,
+0367,
+0370, setBrown
+0371, setRed
+0372, setOrange
+0373, setYellow
+0374, setGreen
+0375, setBlue
+0376, setViolet
+0377, setGrey
