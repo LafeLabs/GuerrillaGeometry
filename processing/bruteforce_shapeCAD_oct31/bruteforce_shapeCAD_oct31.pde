@@ -22,10 +22,6 @@ void draw(){
   x = 300;
   y = 300;
 
-  writeRoctalArray(message);
-  x = 200;
-  y = 400;
-  writeRoctalCharacter(0101);
 }
 
 
@@ -156,38 +152,52 @@ void drawCommandGlyph(int localByte){
       southEastHalfSquare_drawCommandGlyph();
       break;
     case 0340:
+      moveWestSouthWest_drawCommandGlyph();
       break;
     case 0341:
+      moveSouthWest_drawCommandGlyph();
       break;
     case 0342:
+      moveSouth_drawCommandGlyph();
       break;
     case 0343:
+      moveSouthEast_drawCommandGlyph();
       break;
     case 0344:
+      moveEastSouthEast_drawCommandGlyph();
       break;
     case 0345:
+      pointNorthEquilateralTriangle_drawCommandGlyph();
       break;
     case 0346:
+      twoXZoomIn_drawCommandGlyph();
       break;
     case 0347:
+      fourXZoomIn_drawCommandGlyph();
       break;
     case 0350:
       break;
     case 0351:
+      moveSouthSouthWest_drawCommandGlyph();
       break;
     case 0352:
       break;
     case 0353:
+      moveSouthSouthEast_drawCommandGlyph();
       break;
     case 0354:
       break;
     case 0355:
+      pointSouthEquilateralTriangle_drawCommandGlyph();
       break;
     case 0356:
+      twoXZoomOut_drawCommandGlyph();
       break;
     case 0357:
+      fourXZoomOut_drawCommandGlyph();
       break;
     case 0360:
+      fullCircle_drawCommandGlyph();
       break;
     case 0361:
       break;
@@ -196,45 +206,61 @@ void drawCommandGlyph(int localByte){
     case 0363:
       break;
     case 0364:
+      pointWestEquilateralTriangle_drawCommandGlyph();
       break;
     case 0365:
+      pointEastEquilateralTriangle_drawCommandGlyph();
       break;
     case 0366:
       break;
     case 0367:
       break;
     case 0370:
+      setBrown_drawCommandGlyph();
       break;
     case 0371:
+      setRed_drawCommandGlyph();
       break;
     case 0372:
+      setOrange_drawCommandGlyph();
       break;
     case 0373:
+      setYellow_drawCommandGlyph();
       break;
     case 0374:
+      setGreen_drawCommandGlyph();
       break;
     case 0375:
+      setBlue_drawCommandGlyph();
       break;
     case 0376:
+      setViolet_drawCommandGlyph();
       break;
-    case 0377:
+    case 0377:      
+      setGrey_drawCommandGlyph();
       break;
   }
 }
   
 void doTheThing(int localByte){
-  switch(localByte){
+    switch(localByte){
     case 0300:
+      setBlack();
       break;
     case 0301:
+      setWhite();
       break;
     case 0302:
+      fillIn();
       break;
     case 0303:
+      outline();
       break;
     case 0304:
+      deleteCommand();
       break;
     case 0305:
+      deleteWholeGlyph();
       break;
     case 0306:
       break;
@@ -243,84 +269,117 @@ void doTheThing(int localByte){
     case 0310:
       break;
     case 0311:
+      moveNorthNorthWest();
       break;
     case 0312:
       break;
     case 0313:
+      moveNorthNorthEast();
       break;
     case 0314:
       break;
     case 0315:
+      northWestHalfSquare();
       break;
     case 0316:
+      southernQuarterSquare();
       break;
     case 0317:
+      northEastHalfSquare();
       break;
     case 0320:
+      moveWestNorthWest();
       break;
     case 0321:
+      moveNorthWest();
       break;
     case 0322:
+      moveNorth();
       break;
     case 0323:
+      moveNorthEast();
       break;
     case 0324:
+      moveEastNorthEast();
       break;
     case 0325:
+      easternQuarterSquare();
       break;
     case 0326:
+      wholeSquare();
       break;
     case 0327:
+      westernQuarterSquare();
       break;
     case 0330:
       break;
     case 0331:
+      moveWest();
       break;
     case 0332:
+      restartPosition();
       break;
     case 0333:
+      moveEast();
       break;
     case 0334:
       break;
     case 0335:
+      southWestHalfSquare();
       break;
     case 0336:
+      northernQuarterSquare();
       break;
     case 0337:
+      southEastHalfSquare();
       break;
     case 0340:
+      moveWestSouthWest();
       break;
     case 0341:
+      moveSouthWest();
       break;
     case 0342:
+      moveSouth();
       break;
     case 0343:
+      moveSouthEast();
       break;
     case 0344:
+      moveEastSouthEast();
       break;
     case 0345:
+      pointNorthEquilateralTriangle();
       break;
     case 0346:
+      twoXZoomIn();
       break;
     case 0347:
+      fourXZoomIn();
       break;
     case 0350:
       break;
     case 0351:
+      moveSouthSouthWest();
       break;
     case 0352:
       break;
     case 0353:
+      moveSouthSouthEast();
       break;
     case 0354:
       break;
     case 0355:
+      pointSouthEquilateralTriangle();
       break;
     case 0356:
+      twoXZoomOut();
       break;
     case 0357:
+      fourXZoomOut();
       break;
     case 0360:
+      fullCircle();
       break;
     case 0361:
       break;
@@ -329,28 +388,38 @@ void doTheThing(int localByte){
     case 0363:
       break;
     case 0364:
+      pointWestEquilateralTriangle();
       break;
     case 0365:
+      pointEastEquilateralTriangle();
       break;
     case 0366:
       break;
     case 0367:
       break;
     case 0370:
+      setBrown();
       break;
     case 0371:
+      setRed();
       break;
     case 0372:
+      setOrange();
       break;
     case 0373:
+      setYellow();
       break;
     case 0374:
+      setGreen();
       break;
     case 0375:
+      setBlue();
       break;
     case 0376:
+      setViolet();
       break;
-    case 0377:
+    case 0377:      
+      setGrey();
       break;
   }
 }
@@ -893,6 +962,442 @@ void setViolet_drawCommandGlyph(){
 }
 
 void setGrey_drawCommandGlyph(){
+ noFill();
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+ strokeWeight(1);
+ stroke(0);
+ fill(100);
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);    
+}
+
+void setBlack(){
+  fill(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+}
+
+void setWhite(){
+  stroke(1);
+  fill(255);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+}
+
+void fillIn(){
+   strokeWeight(1);
+   noFill();
+   rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+   fill(0);
+   rect(x+0.15*commandGlyphScale*side,y+0.15*commandGlyphScale*side,0.7*commandGlyphScale*side,0.7*commandGlyphScale*side);
+}
+
+void outline(){
+   strokeWeight(1);
+   noFill();
+   rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+   rect(x+0.15*commandGlyphScale*side,y+0.15*commandGlyphScale*side,0.7*commandGlyphScale*side,0.7*commandGlyphScale*side);
+}
+
+void deleteCommand(){
+   strokeWeight(1);
+   noFill();
+   rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+    strokeWeight(3);
+    line(x + 0.1*commandGlyphScale*side,y + 0.1*commandGlyphScale*side,x + 0.9*commandGlyphScale*side,y + 0.9*commandGlyphScale*side); 
+    line(x + 0.1*commandGlyphScale*side,y + 0.9*commandGlyphScale*side,x + 0.9*commandGlyphScale*side,y + 0.1*commandGlyphScale*side); 
+    strokeWeight(1);
+}
+
+void deleteWholeGlyph(){
+   strokeWeight(1);
+   fill(color(255,0,0));
+   rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+    strokeWeight(3);
+    line(x + 0.1*commandGlyphScale*side,y + 0.1*commandGlyphScale*side,x + 0.9*commandGlyphScale*side,y + 0.9*commandGlyphScale*side); 
+    line(x + 0.1*commandGlyphScale*side,y + 0.9*commandGlyphScale*side,x + 0.9*commandGlyphScale*side,y + 0.1*commandGlyphScale*side); 
+    strokeWeight(1);
+}
+
+
+void moveNorthNorthWest(){
+  noFill();
+  stroke(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*0.3*side,y + commandGlyphScale*0.1*side);
+  
+}
+
+void moveNorthNorthEast(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*0.6*side,y + commandGlyphScale*0.1*side);
+}
+
+void northWestHalfSquare(){
+   strokeWeight(1);
+   fill(color(0,0,255));
+   rect(x,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   fill(color(255,0,255));
+   rect(x+0.5*commandGlyphScale*side,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   rect(x,y+0.5*commandGlyphScale*side,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   fill(255);
+   triangle(x + commandGlyphScale*side,y,x,y + commandGlyphScale*side,x + commandGlyphScale*side,y + commandGlyphScale*side);
+}
+
+void southernQuarterSquare(){
+   strokeWeight(1);
+   noFill();
+   rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+   fill(color(255,0,255));
+   triangle(x,y + commandGlyphScale*side,x + 0.5*commandGlyphScale*side,y + 0.5*commandGlyphScale*side,x + 0.5*commandGlyphScale*side,y+ commandGlyphScale*side);  
+   fill(color(0,0,255));
+   triangle(x + commandGlyphScale*side,y + commandGlyphScale*side,x + 0.5*commandGlyphScale*side,y + 0.5*commandGlyphScale*side,x + 0.5*commandGlyphScale*side,y+ commandGlyphScale*side);
+  
+}
+
+void northEastHalfSquare(){
+   strokeWeight(1);
+   fill(color(0,0,255));
+   rect(x,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   rect(x+0.5*commandGlyphScale*side,y+0.5*commandGlyphScale*side,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   fill(color(255,0,255));
+   rect(x+0.5*commandGlyphScale*side,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   rect(x,y+0.5*commandGlyphScale*side,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   fill(255);
+   triangle(x,y,x,y + commandGlyphScale*side,x + commandGlyphScale*side,y + commandGlyphScale*side);
+}
+
+
+void moveWestNorthWest(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*0.1*side,y + commandGlyphScale*0.4*side);
+}
+
+void moveNorthWest(){
+ noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x,y);  
+}
+
+void moveNorth(){
+ noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + 0.5*commandGlyphScale*side,y);  
+}
+
+void moveNorthEast(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*side,y);  
+}
+
+void moveEastNorthEast(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*0.9*side,y + commandGlyphScale*0.4*side);   
+}
+
+void easternQuarterSquare(){
+   strokeWeight(1);
+   noFill();
+   rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+   fill(color(255,0,255));
+   triangle(x + commandGlyphScale*side,y,x + 0.5*commandGlyphScale*side,y + 0.5*commandGlyphScale*side,x + commandGlyphScale*side,y+ 0.5*commandGlyphScale*side);  
+   fill(color(0,0,255));
+   triangle(x + commandGlyphScale*side,y + commandGlyphScale*side,x + 0.5*commandGlyphScale*side,y + 0.5*commandGlyphScale*side,x + commandGlyphScale*side,y + 0.5*commandGlyphScale*side);
+
+}
+
+void wholeSquare(){
+   strokeWeight(1);
+   fill(color(0,0,255));
+   rect(x,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   rect(x+0.5*commandGlyphScale*side,y+0.5*commandGlyphScale*side,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   fill(color(255,0,255));
+   rect(x+0.5*commandGlyphScale*side,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   rect(x,y+0.5*commandGlyphScale*side,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+}
+
+void westernQuarterSquare(){
+   strokeWeight(1);
+   noFill();
+   rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+   fill(color(0,0,255));
+   triangle(x,y,x + 0.5*commandGlyphScale*side,y + 0.5*commandGlyphScale*side,x,y+ 0.5*commandGlyphScale*side);  
+   fill(color(255,0,255));
+   triangle(x,y + commandGlyphScale*side,x + 0.5*commandGlyphScale*side,y + 0.5*commandGlyphScale*side,x,y + 0.5*commandGlyphScale*side);
+}
+
+void moveWest(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x,y + 0.5*commandGlyphScale*side);  
+}
+
+void restartPosition(){
+   noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  fill(0);
+  rect(x + 0.4*commandGlyphScale*side,y + 0.4*commandGlyphScale*side,0.1*commandGlyphScale*side,0.1*commandGlyphScale*side);
+  
+}
+
+void moveEast(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*side,y + 0.5*commandGlyphScale*side);  
+}
+
+void southWestHalfSquare(){
+   strokeWeight(1);
+   fill(color(0,0,255));
+   rect(x,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   rect(x+0.5*commandGlyphScale*side,y+0.5*commandGlyphScale*side,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   fill(color(255,0,255));
+   rect(x+0.5*commandGlyphScale*side,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   rect(x,y+0.5*commandGlyphScale*side,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   fill(255);
+   triangle(x,y,x + commandGlyphScale*side,y,x + commandGlyphScale*side,y + commandGlyphScale*side);
+}
+
+void northernQuarterSquare(){
+   strokeWeight(1);
+   noFill();
+   rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+   fill(color(0,0,255));
+   triangle(x,y,x + 0.5*commandGlyphScale*side,y + 0.5*commandGlyphScale*side,x + 0.5*commandGlyphScale*side,y);  
+   fill(color(255,0,255));
+   triangle(x + commandGlyphScale*side,y,x + 0.5*commandGlyphScale*side,y + 0.5*commandGlyphScale*side,x + 0.5*commandGlyphScale*side,y);  
+}
+
+void southEastHalfSquare(){
+   strokeWeight(1);
+   fill(color(0,0,255));
+   rect(x,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   rect(x+0.5*commandGlyphScale*side,y+0.5*commandGlyphScale*side,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   fill(color(255,0,255));
+   rect(x+0.5*commandGlyphScale*side,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   rect(x,y+0.5*commandGlyphScale*side,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+   fill(255);
+   triangle(x,y,x + commandGlyphScale*side,y,x,y + commandGlyphScale*side);
+}
+
+void moveWestSouthWest(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*0.1*side,y + commandGlyphScale*0.6*side);
+}
+
+void moveSouthWest(){
+ noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x,y + commandGlyphScale*side);  
+}
+
+void moveSouth(){
+ noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + 0.5*commandGlyphScale*side,y + commandGlyphScale*side);  
+}
+
+void moveSouthEast(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*side,y + commandGlyphScale*side);  
+}
+
+void moveEastSouthEast(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*0.9*side,y + commandGlyphScale*0.6*side);   
+}
+
+void pointNorthEquilateralTriangle(){
+ strokeWeight(1);
+ stroke(0);
+ fill(color(255,0,0));
+ triangle(x,y + commandGlyphScale*side,x + 0.5*commandGlyphScale*side,y + commandGlyphScale*side*(1-sin((2*PI)/6)),x + commandGlyphScale*side,y + commandGlyphScale*side);
+}
+
+void twoXZoomIn(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  fill(0);
+  rect(x,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);
+}
+
+void fourXZoomIn(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  fill(0);
+  rect(x,y,0.25*commandGlyphScale*side,0.25*commandGlyphScale*side);
+}
+
+void moveSouthSouthWest(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*0.4*side,y + commandGlyphScale*0.9*side);  
+}
+
+void moveSouthSouthEast(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(3);
+  line(x + commandGlyphScale*0.5*side,y + commandGlyphScale*0.5*side,x + commandGlyphScale*0.6*side,y + commandGlyphScale*0.9*side);  
+}
+
+void pointSouthEquilateralTriangle(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(1);
+ stroke(0);
+ fill(color(255,0,0));
+ triangle(x,y,x + 0.5*commandGlyphScale*side,y + commandGlyphScale*side*(sin((2*PI)/6)),x + commandGlyphScale*side,y);
+}
+
+void twoXZoomOut(){
+  fill(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  fill(255);
+  rect(x,y,0.5*commandGlyphScale*side,0.5*commandGlyphScale*side);    
+}
+
+
+void fourXZoomOut(){
+  fill(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  fill(255);
+  rect(x,y,0.25*commandGlyphScale*side,0.25*commandGlyphScale*side);    
+}
+
+void fullCircle(){
+  strokeWeight(1);
+  stroke(0);
+  noFill();
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  fill(color(255,255,0));
+  ellipse(x + 0.5*commandGlyphScale*side,y + 0.5*commandGlyphScale*side,commandGlyphScale*side,commandGlyphScale*side); 
+}
+
+
+void pointWestEquilateralTriangle(){
+  noFill();
+  strokeWeight(0);
+  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+  strokeWeight(1);
+ stroke(0);
+ fill(color(255,0,0));
+ triangle(x+commandGlyphScale*side*(1-sin((2*PI)/6)),y + 0.5*commandGlyphScale*side,x + commandGlyphScale*side,y,x + commandGlyphScale*side,y + commandGlyphScale*side);  
+}
+
+void pointEastEquilateralTriangle(){
+ noFill();
+ strokeWeight(0);
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+ strokeWeight(1);
+ stroke(0);
+ fill(color(255,0,0));
+ triangle(x+commandGlyphScale*side*(sin((2*PI)/6)),y + 0.5*commandGlyphScale*side,x,y,x,y + commandGlyphScale*side);  
+}
+
+
+void setBrown(){
+ noFill();
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+ strokeWeight(1);
+ stroke(0);
+ fill(color(127,0,0));
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);    
+}
+
+void setRed(){
+ noFill();
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+ strokeWeight(1);
+ stroke(0);
+ fill(color(255,0,0));
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);    
+}
+
+void setOrange(){
+ noFill();
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+ strokeWeight(1);
+ stroke(0);
+ fill(color(255,127,0));
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);    
+}
+
+void setYellow(){
+ noFill();
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+ strokeWeight(1);
+ stroke(0);
+ fill(color(255,255,0));
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);    
+}
+
+void setGreen(){
+ noFill();
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+ strokeWeight(1);
+ stroke(0);
+ fill(color(0,255,0));
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);    
+}
+
+void setBlue(){
+ noFill();
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+ strokeWeight(1);
+ stroke(0);
+ fill(color(0,0,255));
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);    
+}
+
+void setViolet(){
+ noFill();
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
+ strokeWeight(1);
+ stroke(0);
+ fill(color(255,0,255));
+ rect(x,y,commandGlyphScale*side,commandGlyphScale*side);    
+}
+
+void setGrey(){
  noFill();
  rect(x,y,commandGlyphScale*side,commandGlyphScale*side);
  strokeWeight(1);
