@@ -36,7 +36,24 @@ concept and philosophy, images of finished products, explanation of why i'm doin
 
 ## Third Construction C3
 
+0. materials and final products, motivation, why alchemy
+1. art box, 6 inch cardboard octahedron
+2. octahedron/tetrahedron system from sticks, AIR, with empty space, show how to make lattices, larger structures, this is BCC, Cesium chloride, 
+3. HDPE and aluminum and LED tetrahedron with AA batteries? 3 inch, FIRE, with red paint
+4. suspended plant cubes showing how to make a lattice of them, EARTH in the cube
+5. icosahedron, WATER element, using pentagon and holes drilled in plastic and styrofoam or bottles with 5 fold symmetry or hub caps with 5 fold symmetry, show how they can go together to form a 3 foot stick tetrahedron suspending the 1 foot stick octahedron and the plant cubes, show renderings of icosahedron underwater for large scale rotating aquaculture, with manipulation of relative bouyancy of unit cells
+6. dodecahedron chemical cell to drive LED in tetrahedron, which goes on top of dodecahedron to make a night light, ION and FIRE, so ALL FIVE ELEMENTS have been built
 
 
 ## Fourth Construction C4
+
+0. Conic sections, discussion, history, applications, finished products, tools
+1. ellipse: circles, string and pen construction, rope and chalk construction, flashlight and compass combined with other methods, various trammel constructions
+2. parabola: arcs, flashlights, construction with rulers, compare them all, discuss asteroids vs. comets with practical examples
+3. solar blaster, build and use it
+4. solar blaster applications and deployment and safety
+
 ## Fifth Construction C5
+
+0. motivation and tools
+1. fractal dymaxion
