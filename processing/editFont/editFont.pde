@@ -1,10 +1,10 @@
 float unit = 50;
 float side= unit;
-float buttonSide = 50;
+float buttonSide = 30;
 float theta = 0;
 float cursorTheta = 0;
-float x0= 250;
-float y0 = 250;
+float x0= 325;
+float y0 = 125;
 float x = x0;
 float y = y0;
 int[] currentGlyph= {};
@@ -12,25 +12,23 @@ int roctalOriginX = 0;
 int roctalOriginY = 490;
 int roctalIndex = 0;
 int roctalSide = 1;
+PImage img;
 
-int[] fooGlyph = {0301,0302,0301,0302,0301};
 
 void setup(){
   size(500,500);
-  ellipseMode(CENTER);
-  
+  ellipseMode(CENTER); 
+  img = loadImage("font0.jpg");
 }
 
 
 void draw(){
    background(255);
+   img = loadImage("font0.jpg");
+   image(img,0,0);
    drawButtons();
    drawGlyph(currentGlyph);
    drawCursor();
-   roctalIndex = 0;
-   writeRoctalSequence(currentGlyph);
-   roctalIndex = 0;
-   println(readRoctalSequence());
 }
 
 
@@ -74,16 +72,16 @@ void drawButtons(){
   for(int columns = 0;columns < 8;columns++){ 
     rect(columns*buttonSide,0,buttonSide,buttonSide);
   }  
-  textSize(18);
+  textSize(10);
   fill(0);
-  text("move", 5, 25);   
+  text("move", 2, 25);   
   text("line", 5 + buttonSide, 25);   
   text("+15", 5 + 2*buttonSide, 25);
   text("-15", 5 + 3*buttonSide, 25);
   text("  +", 5 + 4*buttonSide, 25);
   text("  -", 5 + 5*buttonSide, 25);
-  text("HOME", 5 + 6*buttonSide, 25);
-  text("DEL", 5 + 7*buttonSide, 25);
+  text("home", 1 + 6*buttonSide, 25);
+  text("del", 5 + 7*buttonSide, 25);
   noFill();
 }
 
@@ -120,8 +118,6 @@ void drawGlyph(int[] localGlyph){
   roctalIndex = 0;
    for(int index = 0;index < localGlyph.length; index++){
       doTheThing(localGlyph[index]);
-      writeRoctal(localGlyph[index]);
-      roctalIndex++;
    } 
 }
 
@@ -159,7 +155,6 @@ void writeRoctal(int localByte){
   noStroke();
   fill(0);
   rect(roctalOriginX + 4*roctalIndex*roctalSide,roctalOriginY,roctalSide,roctalSide);
-
   for(int bitIndex = 8;bitIndex >=0;bitIndex--){
      if(((localByte >> bitIndex)&1) == 1){
         fill(0); 
@@ -196,6 +191,17 @@ void printOctal(int localByte){
    print((localByte >> 6) & 7);
    print((localByte >> 3) & 7);
    print((localByte) & 7);
-   println();
-  
+   println(); 
+}
+
+void keyPressed(){
+  if(key >= 0101 && key <= (0101 + 26)){
+    roctalIndex = 0;
+    background(255);
+    img = loadImage("font0.jpg");
+    image(img,0,0);
+    roctalOriginY = 300 + 4*roctalSide*(key - 0101);
+    writeRoctalSequence(currentGlyph); 
+    save("font0.jpg");
+  }
 }
