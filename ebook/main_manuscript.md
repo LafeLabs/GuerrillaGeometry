@@ -23,7 +23,9 @@ We find geometry in the art of every religion in one form or another, even if it
 
 If you consider that this is a subject that you can use to study art, theology, biology, geography, physics, and can also be used to build very useful things, it's hard to believe we do anything *but* geometry in school!  And I'm trying to base my system of knowledge on it in order to create just such a method of learning.  
 
-Initially what I wanted to do in technology was build things that could self replicate in order to manufacture arbitrary objects, chemicals etc. to provide all human needs for free.  In the 1990s I naively believed the propaganda of the computer industry with their tall tales of "molecular nanotechnology", which was supposed to make some sort of magic computer that would make all the stuff of life without having to actually deal with life: intricate drawings and descriptions were made of imaginary atomic scale gears and levers, shrinking Victorian era clockwork and steam technology into 
+Initially what I wanted to do in technology was build things that could self replicate in order to manufacture arbitrary objects, chemicals etc. to provide all human needs for free.  In the 1990s I naively believed the propaganda of the computer industry with their tall tales of "molecular nanotechnology", which was supposed to make some sort of magic computer that would make all the stuff of life without having to actually deal with life: intricate drawings and descriptions were made of imaginary atomic scale gears and levers which were just shrunken versions of Victorian era clockwork and steam technology.  It all sounded amazing, which was the idea, money and time were spent and mostly no results were produced.  
+
+I now think we were all missing the point back then, and that 
 
 
 
