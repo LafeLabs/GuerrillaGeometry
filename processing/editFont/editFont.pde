@@ -12,6 +12,9 @@ int roctalOriginX = 0;
 int roctalOriginY = 490;
 int roctalIndex = 0;
 int roctalSide = 1;
+
+int roctalGlyphSide = 8; //number of roctals per char on a side
+
 PImage img;
 
 
@@ -65,6 +68,41 @@ void doTheThing(int localByte){
           currentGlyph = shorten(currentGlyph);
       }
    }
+   if(localByte == 0310){
+    doTheThing(0302);
+    doTheThing(0302);
+   }
+   if(localByte == 0311){
+    doTheThing(0303);
+    doTheThing(0303);
+   }
+   if(localByte == 0312){
+    doTheThing(0302);
+    doTheThing(0302);
+    doTheThing(0302);
+   }
+   if(localByte == 0313){
+    doTheThing(0303);
+    doTheThing(0303);
+    doTheThing(0303);
+   }
+   if(localByte == 0314){
+    doTheThing(0310);
+    doTheThing(0310);
+   }
+   if(localByte == 0315){
+    doTheThing(0311);
+    doTheThing(0311);
+   }
+   if(localByte == 0316){
+    doTheThing(0312);
+    doTheThing(0312);
+   }
+   if(localByte == 0317){
+    doTheThing(0313);
+    doTheThing(0313);
+   }
+
 }
 
 void drawButtons(){
@@ -72,6 +110,10 @@ void drawButtons(){
   for(int columns = 0;columns < 8;columns++){ 
     rect(columns*buttonSide,0,buttonSide,buttonSide);
   }  
+  for(int columns = 0;columns < 8;columns++){ 
+    rect(columns*buttonSide,buttonSide,buttonSide,buttonSide);
+  }  
+
   textSize(10);
   fill(0);
   text("move", 2, 25);   
@@ -82,6 +124,17 @@ void drawButtons(){
   text("  -", 5 + 5*buttonSide, 25);
   text("home", 1 + 6*buttonSide, 25);
   text("del", 5 + 7*buttonSide, 25);
+
+  text("+30", 5 + 0*buttonSide, 25 + buttonSide);
+  text("-30", 5 + 1*buttonSide, 25 + buttonSide);
+  text("+45", 5 + 2*buttonSide, 25 + buttonSide);
+  text("-45", 5 + 3*buttonSide, 25 + buttonSide);
+  text("+60", 5 + 4*buttonSide, 25 + buttonSide);
+  text("-60", 5 + 5*buttonSide, 25 + buttonSide);
+  text("+90", 5 + 6*buttonSide, 25 + buttonSide);
+  text("-90", 5 + 7*buttonSide, 25 + buttonSide);
+
+
   noFill();
 }
 
@@ -106,6 +159,13 @@ void mouseClicked(){
          }
     }
     else{}
+    doTheThing(localByte);
+  }
+
+  if((mouseY < 2*buttonSide) && (mouseY > buttonSide) && (mouseX < 8*buttonSide)){
+    int localByte = 0310;
+    localByte += mouseX/buttonSide;
+    currentGlyph = append(currentGlyph,localByte);    
     doTheThing(localByte);
   }
 
