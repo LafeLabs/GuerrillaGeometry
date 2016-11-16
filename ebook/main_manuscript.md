@@ -34,7 +34,13 @@ This brings me to the next point about geometry which is that it's an alternate 
 One final point I want to make in this introduction is that I view geometry as something one *does*, and that the thing one does this to is something I would call the "trash feed", a constant flow of what the existing civilization calls "trash", but which geometry can quickly impose order on in a way that makes it easily work with the human mind to make useful things.  Thus we are able to construct a system of what might be called Trash Magic, the welding of the powers over this flow of trash that can be gained by building geometric ideas into our minds.  In this book we will build a series of constructions which I believe are useful. And when I say "we" I mean that very literally.  the experience of working through this book should be an adventure of a very physical nature, involving cut wood, burnt plastic, bent aluminum cans, and big thick cardboard triangles.  We will take trash that has non useful structure and re-order it using the geometry in our minds into structures that are useful and extensible into much larger systems, and which self replicate through communication with other humans.  
 
 
+## introduction
 
+## symmetries
+
+## tools and methods
+
+## scale and units
 
 ## First Construction C1
 
@@ -89,3 +95,30 @@ One final point I want to make in this introduction is that I view geometry as s
 
 0. motivation and tools
 1. fractal dymaxion
+
+
+## Scale up, Scale down, Extend
+
+### scale fluidics down, scale microscopy down, scale manipulators down, 
+
+### scale marine infrastructure up in size, 
+
+render this
+
+### scale production and value geometry up in size, 
+
+### scale geography up in size.
+
+
+### Alchemy constructions
+
+### roctal and other shape codes, 
+
+connection to self documenting objects and places, role in communication of geometric ideas and information
+
+
+
+
+
+
+
