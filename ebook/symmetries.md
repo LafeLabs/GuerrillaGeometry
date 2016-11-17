@@ -19,5 +19,9 @@ In school we're taught that numbers are just numbers, all the same.  4 is just 3
 
 # Special Triangles
 
- 
+## magic angle = 54.7 degrees = arctan(sqrt(2))
+
+Methane, CH4 has bond angle of twice the magic angle, about 109.47 degrees.  Also magic angles matter in NMR and it affects some artifacts in MRI.
+
+tetrahedral/octahedral lattice, magic angle and 45 degrees as two altitude choices in shape code
  

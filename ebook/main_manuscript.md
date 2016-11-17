@@ -1,4 +1,3 @@
-# Action Geometry
 
 
 ## Introduction: 
@@ -9,7 +8,10 @@
 Action!! 
 # Adventure Geometry 
 
-Adventure!!  Professional geometricians might say their subject is already an adventure.  Perhaps.  But that is not what I mean here.  I mean adventure like quests and campaigns and forests and swamps.  I mean actually going out and *doing* things in the physical world.  Too much of the time we separate geometry from art from technology from belief from our day to day actions, when it is much more natural for these to all be part of the flow of the adventure of life.  
+# Action Geometry
+
+
+Action and Adventure!!  Professional geometricians might say their subject is already an adventure.  Perhaps.  But that is not what I mean here.  I mean adventure like quests and campaigns and forests and swamps.  I mean actually going out and *doing* things in the physical world.  Too much of the time we separate geometry from art from technology from belief from our day to day actions, when it is much more natural for these to all be part of the flow of the adventure of life.  
 
 And why geometry?  Geometry has many definitions but to me it's a particularly efficient way for the human mind to connect with the physical world.  We refer to things like "shapes" and "positions", "points", "lines", "circles" etc. as if these are real things in some very abstract sense outside of our own minds.  Perhaps they are perhaps they're not, it's not my place here to say.  But what I will say is that that's not the most important thing for most of us.  What we care about are the things we *actually* care about: life, adventure, caring for our fellow creatures, knowledge, belief, beauty, art, love. And the way shapes fit into space is directly relevant to all these things in very practical ways.  My approach here is not to say what a triangle or circle "really" is in some deep philosophical sense.  Rather it is to say how you can make your actual life better with a triangle or a circle in the most efficient possible way.  
 
@@ -23,7 +25,7 @@ We find geometry in the art of every religion in one form or another, even if it
 
 If you consider that this is a subject that you can use to study art, theology, biology, geography, physics, and can also be used to build very useful things, it's hard to believe we do anything *but* geometry in school!  And I'm trying to base my system of knowledge on it in order to create just such a method of learning.  
 
-Initially what I wanted to do in technology was build things that could self replicate in order to manufacture arbitrary objects, chemicals etc. to provide all human needs for free.  In the 1990s I naively believed the propaganda of the computer industry with their tall tales of "molecular nanotechnology", which was supposed to make some sort of magic computer that would make all the stuff of life without having to actually deal with life: intricate drawings and descriptions were made of imaginary atomic scale gears and levers which were just shrunken versions of Victorian era clockwork and steam technology.  It all sounded amazing, which was the idea, money and time were spent and mostly no results were produced.  
+Initially what I wanted to do in technology was build things that could self-replicate in order to manufacture arbitrary objects, chemicals etc. to provide all human needs for free.  In the 1990s I naively believed the propaganda of the computer industry with their tall tales of "molecular nanotechnology", which was supposed to make some sort of magic computer that would make all the stuff of life without having to actually deal with life: intricate drawings and descriptions were made of imaginary atomic scale gears and levers which were just shrunken versions of Victorian era clockwork and steam technology.  It all sounded amazing, which was the idea, money and time were spent and mostly no results were produced.  
 
 I now think we were all missing the point back then, and that self replication already exists in the form of life, which includes us!  We can and do make things all the time, and it's not always "work"--it's just life.  Rather than "technology" made by some class of special elite people called "engineers", we need things that connect our minds to the world around us in free universal ways, and then we can replicate what we need in a safe and controlled way, rather than trying to deliberately build some sort of replication monster that can do this without our help.  
 

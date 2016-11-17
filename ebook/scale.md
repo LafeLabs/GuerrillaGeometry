@@ -10,7 +10,7 @@ So the largest unit to use is the astronomical unit, or AU, which is the distanc
 1 parsec (3.26 ly)
 
 
-
+put it all in a huge table and also a simplified table with diagrams for all
 size of universe, compare to Archimedes result
 1 LY  (32 million light seconds)
 1 AU (500 light seconds)
@@ -40,6 +40,24 @@ mil(25.4 microns)
 micron(1000 nm)
 nm(10 angstrom)
 angstrom
+
+
+compare all these to:
+
+ - sticks
+ - paper thickness
+ - pen thickness
+ - pencil thickness, before and after sharpening
+ - wavelength of visible light
+ - atoms
+ - skin cell
+ - onion cell
+ - E coli
+ - DNA double helix
+ - printer panels
+ - duct tape thickness
+ - HDPE sheet thickness
+ - height of typical high-rises, relation to local geography
 
 ## SI, the "metric system", and the French Revolution
 
