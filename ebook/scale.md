@@ -61,7 +61,21 @@ compare all these to:
 
 ## SI, the "metric system", and the French Revolution
 
+## Anarchist cubit
+
+
+
 ## angles
 
 radians, degrees, circles, sin(theta) = theta for small angles etc. 
+
+my trig table, my whole system of trigonometry and calculus based on angles and triangles
+
+## Precision vs. accuracy etc.
+
+Nothing in my system of knowledge involves precision greater than about 1%.  Not time, not distance, not mass, not magnetic field, not angle, nothing.  In some cases it will appear we care about more than 1% but that's usually because we're using the wrong units.  For instance, I often care about temperature to within 1 degree F, which is less than 1% of 300k.  But kelvin are simply the wrong units for indoor temperature control.  The range should be 50 F to 80 F at the absolute outside, so 1 F is only a few percent relative to a reasonable zero point and scale.  
+
+Floating point is a capitalist conspiracy.  You only need it when you are too lazy to do your geometry right.  We can re-write trigonometry with 2 digits only, re-write calculus with no infinities and only 1% precision, all based on triangles from the 2 digit trig tables.  e, pi, phi, --all these are just 2 digits maximum now.  pi = 3.1, e = 2.7, phi =  1.6, sqrt(2) = 1.4, sqrt(3) = 1.7, k = 1.4e-23 J/k, c = 3e8 m/s, 
+
+Also for units, a goal is to always find good normalizations, which relate up and down in scale 
 
