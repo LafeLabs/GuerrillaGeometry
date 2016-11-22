@@ -7,9 +7,14 @@ color black,white,red,orange,yellow,green,blue,violet;
 float buttonSide = 40;
 int[] currentGlyph = {};
 
-String[] shapeAddressArray = {};
-String[] shapeKeyArray = {};
-String[] shapeGlyphArray = {};
+//String[] shapeAddressArray = {};
+//String[] shapeKeyArray = {};
+//String[] shapeGlyphArray = {};
+String[] shapeGlyphArray = new String[32];
+String[] shapeKeyArray = new String[32];
+String[] shapeAddressArray = new String[32];
+String keyTable = "12345678qwertyuiasdfghjkzxcvbnm,";
+String keySaveTable = "!@#$%^&*QWERTYUIASDFGHJKZXCVBNM<";
 
 void setup(){
   black = color(0,0,0);
@@ -42,13 +47,12 @@ void setup(){
 }
 
 void draw(){
- 
-//  drawGlyph(commandString2glyph("0301,0357,0332,0357,0301,0341,0341,0332,0357,0301,0341,0341,0332,0357"));
   background(255);
   doTheThing(0300);
   drawButtons();
   drawCurrentGlyph();
   drawCursor();
+  println(saveKey2index('R'));
 //  noLoop();
 }
 
@@ -144,6 +148,18 @@ int[] commandString2glyph(String localString){
   return localIntArray;
 }
 
+String glyph2commandString(int[] localGlyph){
+  String localString = "";
+  for(int index=0;index<localGlyph.length;index++){
+      localString += intOctal(localGlyph[index]);
+      localString += ',';
+  }
+  if(localString.length() > 2 ){
+     localString = localString.substring(0,localString.length()-1); 
+  }
+  return localString;
+}
+
 String intOctal(int localByte){
  String bullshit = "";
  char ones = char((localByte%8)+060);
@@ -187,11 +203,57 @@ void mouseClicked(){
     int eights = int(mouseY/buttonSide);
     int sixtyfours = 3;
     int localByte = sixtyfours*64 + ones + 8*eights; 
-    doTheThing(localByte);
-    currentGlyph = append(currentGlyph,localByte);
+    if(localByte != 0301){ 
+      doTheThing(localByte);
+      currentGlyph = append(currentGlyph,localByte);
+    }
+    if(localByte == 0301 && currentGlyph.length != 0){
+       currentGlyph = shorten(currentGlyph); 
+    }
     println(intOctal(localByte));
   }  
 }
+
+void keyPressed(){
+  if(key == ' '){
+    String[] tempStringArray = {}; 
+    tempStringArray = append(tempStringArray,glyph2commandString(currentGlyph));
+    saveStrings("currentGlyph.txt",tempStringArray);
+  }
+  if(key == '`'){
+    String[] tempStringArray = loadStrings("currentGlyph.txt");
+    int[] tempGlyph = commandString2glyph(tempStringArray[0]);
+    currentGlyph = concat(currentGlyph,tempGlyph);
+  }
+  if(saveKey2index(key) != -1){
+    shapeGlyphArray[saveKey2index(key)] = glyph2commandString(currentGlyph);
+  }
+  if(key2index(key) != -1){
+    currentGlyph = concat(currentGlyph,commandString2glyph(shapeGlyphArray[key2index(key)]));
+  }
+
+}
+
+int key2index(char localChar){
+ int keyIndex = -1;
+ for(int stringIndex = 0;stringIndex < keyTable.length();stringIndex++){
+      if(localChar == keyTable.charAt(stringIndex)){
+         keyIndex = stringIndex; 
+      }
+ }
+ return keyIndex;
+}
+
+int saveKey2index(char localChar){
+ int keyIndex = -1;
+ for(int stringIndex = 0;stringIndex < keySaveTable.length();stringIndex++){
+      if(localChar == keySaveTable.charAt(stringIndex)){
+         keyIndex = stringIndex; 
+      }
+ }
+ return keyIndex;
+}
+
 void doTheThing(int localByte){
 if(localByte == 0300){
   theta = theta0;side = unit;x=x0;y=y0;  //rst
