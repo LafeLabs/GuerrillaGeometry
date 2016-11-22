@@ -23,6 +23,7 @@ void setup(){
   size(800,600);
   background(255);
   noFill();
+  stroke(2);
   textSize(8);
   x0 = 600;
   y0 = 300;
@@ -36,37 +37,19 @@ void setup(){
   E = 2.7;
   theta_magic = radians(54.7);
   scaleFactor = 2;
-  thetaStep  = PI/3;
-  
+  thetaStep  = PI/3;  
+  writeCode();
 }
 
 void draw(){
-  String[] code0300 = loadStrings("0300s.txt"); 
-  String[] code0200 = loadStrings("0200s.txt"); 
-  writeCode(code0300); 
-  getShapes(code0200);
-  String[] labelArray = buttonLabels(code0300);
+ 
+//  drawGlyph(commandString2glyph("0301,0357,0332,0357,0301,0341,0341,0332,0357,0301,0341,0341,0332,0357"));
   background(255);
-  drawButtons(labelArray);
-  x=x0;
-  y=y0;
-  theta = theta0;
-  side = unit;
-  scaleFactor = 2;
-  thetaStep = PI/3;
+  doTheThing(0300);
+  drawButtons();
   drawCurrentGlyph();
   drawCursor();
 //  noLoop();
-}
-
-
-int[] commandString2glyph(String localString){
-  int[] localIntArray = {};
-  String[] localStringArray  = split(localString,',');
-  for(int index = 0;index < localStringArray.length;index++){
-     localIntArray = append(localIntArray,string2octal(localStringArray[index]));  
-  }
-  return localIntArray;
 }
 
 void drawGlyph(int[] localGlyph){
@@ -75,7 +58,6 @@ void drawGlyph(int[] localGlyph){
     doTheThing(localGlyph[index]);  
   }  
 }
-
 void drawCurrentGlyph(){
   for(int bullshitIndex = 0;bullshitIndex < currentGlyph.length;bullshitIndex++){
     stroke(currentColor); 
@@ -97,20 +79,44 @@ void drawCursor(){
   stroke(0);
   line(x,y,x + side*cos(theta + thetaStep),y+side*sin(theta + thetaStep));
   line(x,y,x + side*cos(theta - thetaStep),y+side*sin(theta - thetaStep));
-
+  strokeWeight(2);
 }
 
-
-void drawButtons(String[] code0300local){
-  for(int row = 0;row < 8;row++){
+void drawButtons(){
+    String[] code0300 = loadStrings("0300s2.txt"); 
+    String[] labelArray = {};
+    for(int index =0;index < code0300.length;index++){
+      if(code0300[index].length() >=4){
+        String thisLine = code0300[index];
+        String[] thisLineSplit = split(thisLine,"//");
+        thisLine = thisLineSplit[1];
+        //println(thisLine);
+        labelArray = append(labelArray,thisLine);             
+      }
+   }
+   for(int row = 0;row < 6;row++){
    for(int column = 0;column < 8;column++){
      rect(column*buttonSide,row*buttonSide,buttonSide,buttonSide);
      fill(0);
-     text(code0300local[column + 8*row],(column + 0.1)*buttonSide,(row + 0.4)*buttonSide);
+     text(labelArray[column + 8*row],(column + 0.1)*buttonSide,(row + 0.4)*buttonSide);
      noFill();
    }
   }
-  
+}
+
+String[] buttonLabels(){
+    String[] code0300 = loadStrings("0300s2.txt"); 
+    String[] labelArray = {};
+    for(int index =0;index < code0300.length;index++){
+      if(code0300[index].length() >=4){
+        String thisLine = code0300[index].substring(4,code0300[index].length());
+        String[] thisLineSplit = split(thisLine,"//");
+        thisLine = thisLineSplit[1];
+        //println(thisLine);
+        labelArray = append(labelArray,thisLine);             
+      }
+     }
+    return labelArray;
 }
 
 void getShapes(String[] code0200local){
@@ -129,37 +135,14 @@ void getShapes(String[] code0200local){
 }
 
 
-String[] buttonLabels(String[] code0300local){
-    String[] labelArray = {};
-    for(int index =0;index < code0300local.length;index++){
-      if(code0300local[index].length() >=4){
-        String thisLine = code0300local[index].substring(4,code0300local[index].length());
-        String[] thisLineSplit = split(thisLine,"//");
-        thisLine = thisLineSplit[1];
-        //println(thisLine);
-        labelArray = append(labelArray,thisLine);             
-      }
-     }
-    return labelArray;
+int[] commandString2glyph(String localString){
+  int[] localIntArray = {};
+  String[] localStringArray  = split(localString,',');
+  for(int index = 0;index < localStringArray.length;index++){
+     localIntArray = append(localIntArray,string2octal(localStringArray[index]));  
+  }
+  return localIntArray;
 }
-
-void writeCode(String[] code0300local){
-    String[] codeOutput = {};
-    codeOutput = append(codeOutput,"void doTheThing(int localByte){");
-    for(int index =0;index < code0300local.length-1;index++){
-      if(code0300local[index].length() >=4){
-        codeOutput = append(codeOutput,"if(localByte == " + intOctal(index + 0300) + "){");
-        String thisLine = code0300local[index].substring(4,code0300local[index].length());
-        codeOutput = append(codeOutput,thisLine);
-        codeOutput = append(codeOutput,"}");
-       // println(thisLine);
-      }
-    }
-   codeOutput = append(codeOutput,"}");
-   saveStrings("codeOutput.txt",codeOutput);  
-}
-
-
 
 String intOctal(int localByte){
  String bullshit = "";
@@ -174,15 +157,32 @@ String intOctal(int localByte){
 }
 
 int string2octal(String localString){
+  localString = trim(localString);
   int sixtyfours = int(localString.charAt(1)) - 060; 
   int eights = int(localString.charAt(2)) - 060; 
   int ones = int(localString.charAt(3)) - 060; 
   return ones + 8*eights + 64*sixtyfours;
 }
 
+void writeCode(){
+    String[] codeOutput = {};
+    String[] code0300 = loadStrings("0300s2.txt"); 
+    codeOutput = append(codeOutput,"void doTheThing(int localByte){");
+    for(int index =0;index < code0300.length-1;index++){
+      if(code0300[index].length() >=4){
+        codeOutput = append(codeOutput,"if(localByte == " + intOctal(index + 0300) + "){");
+        String thisLine = code0300[index].substring(4,code0300[index].length());
+        codeOutput = append(codeOutput,thisLine);
+        codeOutput = append(codeOutput,"}");
+       // println(thisLine);
+      }
+    }
+   codeOutput = append(codeOutput,"}");
+   saveStrings("codeOutput.txt",codeOutput);  
+}
 
 void mouseClicked(){
-  if((mouseX < 8*buttonSide) && (mouseY < 8*buttonSide)){ 
+  if((mouseX < 8*buttonSide) && (mouseY < 6*buttonSide)){ 
     int ones = int(mouseX/buttonSide);
     int eights = int(mouseY/buttonSide);
     int sixtyfours = 3;
@@ -190,39 +190,14 @@ void mouseClicked(){
     doTheThing(localByte);
     currentGlyph = append(currentGlyph,localByte);
     println(intOctal(localByte));
-  }
-  
+  }  
 }
-
-void keyPressed(){
- println(key); 
- for(int bullshit=0;bullshit <  shapeKeyArray.length;bullshit++){
-    if(key == shapeKeyArray[bullshit].charAt(0)){
-        println(shapeGlyphArray[bullshit]);
-        if(shapeGlyphArray[bullshit].length() != 0){
-          drawGlyph(commandString2glyph(shapeGlyphArray[bullshit]));
-          currentGlyph = concat(currentGlyph,commandString2glyph(shapeGlyphArray[bullshit]));
-        }  
-    }
- }
-}
-
-int[] string2glyph(String localString){
-  String[] localStringArray = split(localString,',');
-  int[] output = {};
-  for(int bullshit = 0;bullshit < localStringArray.length;bullshit++){
-      output = append(output,string2octal(localStringArray[bullshit]));
-  }
-  return output;
-}
-
-
 void doTheThing(int localByte){
 if(localByte == 0300){
-  theta = theta0;  //theta0
+  theta = theta0;side = unit;x=x0;y=y0;  //rst
 }
 if(localByte == 0301){
-  point(x,y); //point
+  println("del"); //del
 }
 if(localByte == 0302){
   thetaStep = PI; //180deg
@@ -243,52 +218,52 @@ if(localByte == 0307){
   thetaStep = 2*theta_magic; //2*magic
 }
 if(localByte == 0310){
-  //    derp
+  scaleFactor = sqrt(2); //sqrt(2)x
 }
 if(localByte == 0311){
-  line(x,y,x + side*cos(theta),y + side*sin(theta)); //line
+  scaleFactor = phi; //phix
 }
 if(localByte == 0312){
-    thetaStep /= 2;  //angle/2
+  scaleFactor = sqrt(3); //sqrt(3)x 
 }
 if(localByte == 0313){
-  thetaStep /= 3; //angle/3
+  scaleFactor = 2;  //2x
 }
 if(localByte == 0314){
-  thetaStep /= 4;  //angle/4
+  scaleFactor = E;   //ex
 }
 if(localByte == 0315){
-  thetaStep /= 5;  //angle/5
+  scaleFactor = 3;   //3x
 }
 if(localByte == 0316){
-  thetaStep /= 6;  //angle/6
+  scaleFactor = PI;   //PIx
 }
 if(localByte == 0317){
-  thetaStep /= 60; //angle/60
+  scaleFactor = 5;  //5x
 }
 if(localByte == 0320){
-  rect(x,y,side,side);  //square
+  currentColor = white;stroke(currentColor);//white
 }
 if(localByte == 0321){
-  //     derp
+  currentColor = black;stroke(currentColor);//black
 }
 if(localByte == 0322){
-  thetaStep *= 2;  //2angle
+  currentColor = red;stroke(currentColor);//red
 }
 if(localByte == 0323){
-  thetaStep *= 3; //3angle
+  currentColor = orange;stroke(currentColor);//orange
 }
 if(localByte == 0324){
-  thetaStep *= 4;   //4angle
+  currentColor = yellow;stroke(currentColor);//yellow
 }
 if(localByte == 0325){
-  thetaStep *= 5; //5angle
+  currentColor = green; stroke(currentColor);//green
 }
 if(localByte == 0326){
-  thetaStep *= 6; //6angle
+  currentColor = blue;stroke(currentColor);//blue
 }
 if(localByte == 0327){
-  thetaStep *= 60;  //60angle
+  currentColor = violet;stroke(currentColor);//violet
 }
 if(localByte == 0330){
   x += side*cos(theta);y += side*sin(theta); //move
@@ -303,22 +278,22 @@ if(localByte == 0333){
   line(x,y,x - side*cos(theta),y - side*sin(theta));x -= side*cos(theta);y -= side*sin(theta);//linbak
 }
 if(localByte == 0334){
-  x = x0;y = y0;//homeXY
-}
-if(localByte == 0335){
-  x0 += side*cos(theta);y0 += side*sin(theta);//moveX0Y0
-}
-if(localByte == 0336){
-  x0 -= side*cos(theta);y0 -= side*sin(theta);//backX0Y0
-}
-if(localByte == 0337){
-  drawCursor();//draw\n cursor
-}
-if(localByte == 0340){
   theta += thetaStep; // CW
 }
-if(localByte == 0341){
+if(localByte == 0335){
   theta -= thetaStep; // CCW
+}
+if(localByte == 0336){
+  side *= scaleFactor;  //(+)
+}
+if(localByte == 0337){
+  side /= scaleFactor;  //(-)
+}
+if(localByte == 0340){
+   strokeWeight(5);point(x,y);strokeWeight(2);//point
+}
+if(localByte == 0341){
+  ellipse(x,y,2*side,2*side);//circle
 }
 if(localByte == 0342){
   arc(x,y,2*side,2*side,theta,theta + thetaStep);//arc+
@@ -333,81 +308,30 @@ if(localByte == 0345){
   arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcbak
 }
 if(localByte == 0346){
-  theta0 += thetaStep;  //t0CW
+  fill(0);rect(x,y,side,side);noFill();//1rect
 }
 if(localByte == 0347){
-  theta0 -= thetaStep;  //t0CCW
+  fill(255);rect(x,y,side,side);noFill();//0rect
 }
 if(localByte == 0350){
-  side *= scaleFactor;  //(+)
+  thetaStep /= 2;  //angle/2
 }
 if(localByte == 0351){
-  side /= scaleFactor;  //(-)
+  thetaStep *= 2;  //2angle
 }
 if(localByte == 0352){
-  side = unit;      //unit
+  thetaStep /= 3; //angle/3
 }
 if(localByte == 0353){
-  strokeWeight(3);    //thick
+  thetaStep *= 3; //3angle
 }
 if(localByte == 0354){
-  strokeWeight(1);      //thin
+  thetaStep /= 5;  //angle/5
 }
 if(localByte == 0355){
-  noFill();  //nofill
+  thetaStep *= 5; //5angle
 }
 if(localByte == 0356){
-  fill(currentColor);//fill
-}
-if(localByte == 0357){
-  ellipse(x,y,2*side,2*side);//circle
-}
-if(localByte == 0360){
-  scaleFactor = sqrt(2); //sqrt(2)x
-}
-if(localByte == 0361){
-  scaleFactor = phi; //phix
-}
-if(localByte == 0362){
-  scaleFactor = sqrt(3); //sqrt(3)x 
-}
-if(localByte == 0363){
-  scaleFactor = 2;  //2x
-}
-if(localByte == 0364){
-  scaleFactor = E;   //ex
-}
-if(localByte == 0365){
-  scaleFactor = 3;   //3x
-}
-if(localByte == 0366){
-  scaleFactor = 5;   //5x
-}
-if(localByte == 0367){
-  scaleFactor = 10;  //10x
-}
-if(localByte == 0370){
-  currentColor = white;  //white
-}
-if(localByte == 0371){
-  currentColor = black;  //black
-}
-if(localByte == 0372){
-  currentColor = red;  //red
-}
-if(localByte == 0373){
-  currentColor = orange;  //orange
-}
-if(localByte == 0374){
-  currentColor = yellow;  //yellow
-}
-if(localByte == 0375){
-  currentColor = green;  //green
-}
-if(localByte == 0376){
-  currentColor = blue;  //blue
-}
-if(localByte == 0377){
-  currentColor = violet;  //violet
+  thetaStep /= 60; //angle/60
 }
 }

@@ -1,0 +1,143 @@
+void doTheThing(int localByte){
+if(localByte == 0300){
+	theta = theta0;side = unit;x=x0;y=y0;  //rst
+}
+if(localByte == 0301){
+	println("del"); //del
+}
+if(localByte == 0302){
+	thetaStep = PI; //180deg
+}
+if(localByte == 0303){
+	thetaStep = 2*PI/3; //120deg
+}
+if(localByte == 0304){
+	thetaStep = PI/2;  //90deg
+}
+if(localByte == 0305){
+	thetaStep = 2*PI/5;  //72deg
+}
+if(localByte == 0306){
+	thetaStep = PI/3; //60deg
+}
+if(localByte == 0307){
+	thetaStep = 2*theta_magic; //2*magic
+}
+if(localByte == 0310){
+	scaleFactor = sqrt(2); //sqrt(2)x
+}
+if(localByte == 0311){
+	scaleFactor = phi; //phix
+}
+if(localByte == 0312){
+	scaleFactor = sqrt(3); //sqrt(3)x 
+}
+if(localByte == 0313){
+	scaleFactor = 2;  //2x
+}
+if(localByte == 0314){
+	scaleFactor = E;   //ex
+}
+if(localByte == 0315){
+	scaleFactor = 3;   //3x
+}
+if(localByte == 0316){
+	scaleFactor = PI;   //PIx
+}
+if(localByte == 0317){
+	scaleFactor = 5;  //5x
+}
+if(localByte == 0320){
+	currentColor = white;stroke(currentColor);//white
+}
+if(localByte == 0321){
+	currentColor = black;stroke(currentColor);//black
+}
+if(localByte == 0322){
+	currentColor = red;stroke(currentColor);//red
+}
+if(localByte == 0323){
+	currentColor = orange;stroke(currentColor);//orange
+}
+if(localByte == 0324){
+	currentColor = yellow;stroke(currentColor);//yellow
+}
+if(localByte == 0325){
+	currentColor = green; stroke(currentColor);//green
+}
+if(localByte == 0326){
+	currentColor = blue;stroke(currentColor);//blue
+}
+if(localByte == 0327){
+	currentColor = violet;stroke(currentColor);//violet
+}
+if(localByte == 0330){
+	x += side*cos(theta);y += side*sin(theta); //move
+}
+if(localByte == 0331){
+	x -= side*cos(theta);y -= side*sin(theta);  //back
+}
+if(localByte == 0332){
+    line(x,y,x + side*cos(theta),y + side*sin(theta));x += side*cos(theta);y += side*sin(theta);//linmov
+}
+if(localByte == 0333){
+	line(x,y,x - side*cos(theta),y - side*sin(theta));x -= side*cos(theta);y -= side*sin(theta);//linbak
+}
+if(localByte == 0334){
+	theta += thetaStep; // CW
+}
+if(localByte == 0335){
+	theta -= thetaStep; // CCW
+}
+if(localByte == 0336){
+	side *= scaleFactor;  //(+)
+}
+if(localByte == 0337){
+	side /= scaleFactor;  //(-)
+}
+if(localByte == 0340){
+ 	strokeWeight(5);point(x,y);strokeWeight(2);//point
+}
+if(localByte == 0341){
+	ellipse(x,y,2*side,2*side);//circle
+}
+if(localByte == 0342){
+	arc(x,y,2*side,2*side,theta,theta + thetaStep);//arc+
+}
+if(localByte == 0343){
+	arc(x,y,2*side,2*side,theta - thetaStep,theta);//arc-
+}
+if(localByte == 0344){
+	arc(x,y,2*side,2*side,theta,theta + thetaStep);theta += thetaStep;//arcmov
+}
+if(localByte == 0345){
+	arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcbak
+}
+if(localByte == 0346){
+	fill(0);rect(x,y,side,side);noFill();//1rect
+}
+if(localByte == 0347){
+	fill(255);rect(x,y,side,side);noFill();//0rect
+}
+if(localByte == 0350){
+	thetaStep /= 2;	//angle/2
+}
+if(localByte == 0351){
+	thetaStep *= 2;	//2angle
+}
+if(localByte == 0352){
+	thetaStep /= 3; //angle/3
+}
+if(localByte == 0353){
+	thetaStep *= 3; //3angle
+}
+if(localByte == 0354){
+	thetaStep /= 5;	//angle/5
+}
+if(localByte == 0355){
+	thetaStep *= 5; //5angle
+}
+if(localByte == 0356){
+	thetaStep /= 60; //angle/60
+}
+}

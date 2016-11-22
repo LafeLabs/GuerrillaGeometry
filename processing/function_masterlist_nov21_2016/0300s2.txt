@@ -1,0 +1,48 @@
+0300	theta = theta0;side = unit;x=x0;y=y0;  //rst
+0301	println("del"); //del
+0302	thetaStep = PI; //180deg
+0303	thetaStep = 2*PI/3; //120deg
+0304	thetaStep = PI/2;  //90deg
+0305	thetaStep = 2*PI/5;  //72deg
+0306	thetaStep = PI/3; //60deg
+0307	thetaStep = 2*theta_magic; //2*magic
+0310	scaleFactor = sqrt(2); //sqrt(2)x
+0311	scaleFactor = phi; //phix
+0312	scaleFactor = sqrt(3); //sqrt(3)x 
+0313	scaleFactor = 2;  //2x
+0314	scaleFactor = E;   //ex
+0315	scaleFactor = 3;   //3x
+0316	scaleFactor = PI;   //PIx
+0317	scaleFactor = 5;  //5x
+0320	currentColor = white;stroke(currentColor);//white
+0321	currentColor = black;stroke(currentColor);//black
+0322	currentColor = red;stroke(currentColor);//red
+0323	currentColor = orange;stroke(currentColor);//orange
+0324	currentColor = yellow;stroke(currentColor);//yellow
+0325	currentColor = green; stroke(currentColor);//green
+0326	currentColor = blue;stroke(currentColor);//blue
+0327	currentColor = violet;stroke(currentColor);//violet
+0330	x += side*cos(theta);y += side*sin(theta); //move
+0331	x -= side*cos(theta);y -= side*sin(theta);  //back
+0332    line(x,y,x + side*cos(theta),y + side*sin(theta));x += side*cos(theta);y += side*sin(theta);//linmov
+0333	line(x,y,x - side*cos(theta),y - side*sin(theta));x -= side*cos(theta);y -= side*sin(theta);//linbak
+0334	theta += thetaStep; // CW
+0335	theta -= thetaStep; // CCW
+0336	side *= scaleFactor;  //(+)
+0337	side /= scaleFactor;  //(-)
+0340 	strokeWeight(5);point(x,y);strokeWeight(2);//point
+0341	ellipse(x,y,2*side,2*side);//circle
+0342	arc(x,y,2*side,2*side,theta,theta + thetaStep);//arc+
+0343	arc(x,y,2*side,2*side,theta - thetaStep,theta);//arc-
+0344	arc(x,y,2*side,2*side,theta,theta + thetaStep);theta += thetaStep;//arcmov
+0345	arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcbak
+0346	fill(0);rect(x,y,side,side);noFill();//1rect
+0347	fill(255);rect(x,y,side,side);noFill();//0rect
+0350	thetaStep /= 2;	//angle/2
+0351	thetaStep *= 2;	//2angle
+0352	thetaStep /= 3; //angle/3
+0353	thetaStep *= 3; //3angle
+0354	thetaStep /= 5;	//angle/5
+0355	thetaStep *= 5; //5angle
+0356	thetaStep /= 60; //angle/60
+0357	thetaStep *= 60;  //60angle
