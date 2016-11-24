@@ -1,14 +1,27 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class function_masterlist_nov21_2016 extends PApplet {
+
 float x,y,x0,y0;
 float side, scaleFactor,unit;
 float theta,theta0,thetaStep;
 float phi, E,theta_magic;
-color currentColor;
-color black,white,red,orange,yellow,green,blue,violet;
+int currentColor;
+int black,white,red,orange,yellow,green,blue,violet;
 float buttonSide = 40;
 int[] currentGlyph = {};
-
-
-//0304,0313,0337,0337,0337,0335,0306,0350,0350,0335,0332,0331,0334,0334,0336,0336,0336,0332,0306,0334,0350,0350,0334,0332,0331,0335,0306,0335,0331,0350,0350,0335,0304,0334,0330,0335,0332,0335,0332,0335,0332,0335,0332
 
 //String[] shapeAddressArray = {};
 //String[] shapeKeyArray = {};
@@ -19,16 +32,16 @@ String[] shapeAddressArray = new String[32];
 String keyTable = "12345678qwertyuiasdfghjkzxcvbnm,";
 String keySaveTable = "!@#$%^&*QWERTYUIASDFGHJKZXCVBNM<";
 
-void setup(){
+public void setup(){
   black = color(0,0,0);
   white = color(255);
   red = color(255,0,0);
-  orange = color(255,160,0);
+  orange = color(127,127,0);
   yellow = color(255,255,0);
   green = color(0,255,0);
   blue  = color(0,0,255);
   violet = color(255,0,255);
-  size(800,600);
+  
   background(255);
   noFill();
   stroke(2);
@@ -41,16 +54,16 @@ void setup(){
   side = unit;
   theta  = 0;
   theta0 = 0;
-  phi  = 1.6;
-  E = 2.7;
-  theta_magic = radians(54.7);
+  phi  = 1.6f;
+  E = 2.7f;
+  theta_magic = radians(54.7f);
   scaleFactor = 2;
   thetaStep  = PI/3;  
   writeCode();
   shapeGlyphArray = loadStrings("currentGlyphTable.txt");    
 }
 
-void draw(){
+public void draw(){
   background(255);
   doTheThing(0300);
   drawButtons();
@@ -60,20 +73,20 @@ void draw(){
 //  noLoop();
 }
 
-void drawGlyph(int[] localGlyph){
+public void drawGlyph(int[] localGlyph){
   for(int index = 0;index < localGlyph.length;index++){
     stroke(currentColor); 
     doTheThing(localGlyph[index]);  
   }  
 }
-void drawCurrentGlyph(){
+public void drawCurrentGlyph(){
   for(int bullshitIndex = 0;bullshitIndex < currentGlyph.length;bullshitIndex++){
     stroke(currentColor); 
     doTheThing(currentGlyph[bullshitIndex]);  
   }
 }
 
-void drawCursor(){
+public void drawCursor(){
   strokeWeight(2);
   stroke(color(255,0,0));
   line(x,y,x + scaleFactor*side*cos(theta),y+scaleFactor*side*sin(theta));
@@ -90,7 +103,7 @@ void drawCursor(){
   strokeWeight(2);
 }
 
-void drawButtons(){
+public void drawButtons(){
     String[] code0300 = loadStrings("0300s2.txt"); 
     String[] labelArray = {};
     for(int index =0;index < code0300.length;index++){
@@ -106,13 +119,13 @@ void drawButtons(){
    for(int column = 0;column < 8;column++){
      rect(column*buttonSide,row*buttonSide,buttonSide,buttonSide);
      fill(0);
-     text(labelArray[column + 8*row],(column + 0.1)*buttonSide,(row + 0.4)*buttonSide);
+     text(labelArray[column + 8*row],(column + 0.1f)*buttonSide,(row + 0.4f)*buttonSide);
      noFill();
    }
   }
 }
 
-String[] buttonLabels(){
+public String[] buttonLabels(){
     String[] code0300 = loadStrings("0300s2.txt"); 
     String[] labelArray = {};
     for(int index =0;index < code0300.length;index++){
@@ -127,7 +140,7 @@ String[] buttonLabels(){
     return labelArray;
 }
 
-void getShapes(String[] code0200local){
+public void getShapes(String[] code0200local){
   for(int bullshit = 0;bullshit < code0200local.length;bullshit++){
     String[] fuckComputers = split(code0200local[bullshit],':');
    // println(fuckComputers[0]);
@@ -143,7 +156,7 @@ void getShapes(String[] code0200local){
 }
 
 
-int[] commandString2glyph(String localString){
+public int[] commandString2glyph(String localString){
   int[] localIntArray = {};
   String[] localStringArray  = split(localString,',');
   for(int index = 0;index < localStringArray.length;index++){
@@ -152,7 +165,7 @@ int[] commandString2glyph(String localString){
   return localIntArray;
 }
 
-String glyph2commandString(int[] localGlyph){
+public String glyph2commandString(int[] localGlyph){
   String localString = "";
   for(int index=0;index<localGlyph.length;index++){
       localString += intOctal(localGlyph[index]);
@@ -164,11 +177,11 @@ String glyph2commandString(int[] localGlyph){
   return localString;
 }
 
-String intOctal(int localByte){
+public String intOctal(int localByte){
  String bullshit = "";
- char ones = char((localByte%8)+060);
- char eights = char(((localByte >> 3)&7) + 060);
- char sixtyfours = char(((localByte >> 6)&7) + 060);
+ char ones = PApplet.parseChar((localByte%8)+060);
+ char eights = PApplet.parseChar(((localByte >> 3)&7) + 060);
+ char sixtyfours = PApplet.parseChar(((localByte >> 6)&7) + 060);
  bullshit += '0';
  bullshit += sixtyfours;
  bullshit += eights;
@@ -176,15 +189,15 @@ String intOctal(int localByte){
  return bullshit; 
 }
 
-int string2octal(String localString){
+public int string2octal(String localString){
   localString = trim(localString);
-  int sixtyfours = int(localString.charAt(1)) - 060; 
-  int eights = int(localString.charAt(2)) - 060; 
-  int ones = int(localString.charAt(3)) - 060; 
+  int sixtyfours = PApplet.parseInt(localString.charAt(1)) - 060; 
+  int eights = PApplet.parseInt(localString.charAt(2)) - 060; 
+  int ones = PApplet.parseInt(localString.charAt(3)) - 060; 
   return ones + 8*eights + 64*sixtyfours;
 }
 
-void writeCode(){
+public void writeCode(){
     String[] codeOutput = {};
     String[] code0300 = loadStrings("0300s2.txt"); 
     codeOutput = append(codeOutput,"void doTheThing(int localByte){");
@@ -201,10 +214,10 @@ void writeCode(){
    saveStrings("codeOutput.txt",codeOutput);  
 }
 
-void mouseClicked(){
+public void mouseClicked(){
   if((mouseX < 8*buttonSide) && (mouseY < 6*buttonSide)){ 
-    int ones = int(mouseX/buttonSide);
-    int eights = int(mouseY/buttonSide);
+    int ones = PApplet.parseInt(mouseX/buttonSide);
+    int eights = PApplet.parseInt(mouseY/buttonSide);
     int sixtyfours = 3;
     int localByte = sixtyfours*64 + ones + 8*eights; 
     if(localByte != 0301){ 
@@ -218,7 +231,7 @@ void mouseClicked(){
   }  
 }
 
-void keyPressed(){
+public void keyPressed(){
   if(key == ' '){
     saveStrings("currentGlyphTable.txt",shapeGlyphArray);
   }
@@ -234,7 +247,7 @@ void keyPressed(){
 
 }
 
-int key2index(char localChar){
+public int key2index(char localChar){
  int keyIndex = -1;
  for(int stringIndex = 0;stringIndex < keyTable.length();stringIndex++){
       if(localChar == keyTable.charAt(stringIndex)){
@@ -244,7 +257,7 @@ int key2index(char localChar){
  return keyIndex;
 }
 
-int saveKey2index(char localChar){
+public int saveKey2index(char localChar){
  int keyIndex = -1;
  for(int stringIndex = 0;stringIndex < keySaveTable.length();stringIndex++){
       if(localChar == keySaveTable.charAt(stringIndex)){
@@ -254,9 +267,9 @@ int saveKey2index(char localChar){
  return keyIndex;
 }
 
-void doTheThing(int localByte){
+public void doTheThing(int localByte){
 if(localByte == 0300){
-  theta = theta0;side = unit;x=x0;y=y0;currentColor = black;  //rst
+  theta = theta0;side = unit;x=x0;y=y0;  //rst
 }
 if(localByte == 0301){
   println("del"); //del
@@ -364,10 +377,10 @@ if(localByte == 0343){
   arc(x,y,2*side,2*side,theta - thetaStep,theta);//arc-
 }
 if(localByte == 0344){
-  arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcmov
+  arc(x,y,2*side,2*side,theta,theta + thetaStep);theta += thetaStep;//arcmov
 }
 if(localByte == 0345){
-  arc(x,y,2*side,2*side,theta,theta + thetaStep);theta += thetaStep;//arcbak
+  arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcbak
 }
 if(localByte == 0346){
   fill(0);rect(x,y,side,side);noFill();//1rect
@@ -396,4 +409,14 @@ if(localByte == 0355){
 if(localByte == 0356){
   thetaStep /= 60; //angle/60
 }
+}
+  public void settings() {  size(800,600); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "function_masterlist_nov21_2016" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }

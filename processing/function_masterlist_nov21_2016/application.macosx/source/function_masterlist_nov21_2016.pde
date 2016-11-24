@@ -7,9 +7,6 @@ color black,white,red,orange,yellow,green,blue,violet;
 float buttonSide = 40;
 int[] currentGlyph = {};
 
-
-//0304,0313,0337,0337,0337,0335,0306,0350,0350,0335,0332,0331,0334,0334,0336,0336,0336,0332,0306,0334,0350,0350,0334,0332,0331,0335,0306,0335,0331,0350,0350,0335,0304,0334,0330,0335,0332,0335,0332,0335,0332,0335,0332
-
 //String[] shapeAddressArray = {};
 //String[] shapeKeyArray = {};
 //String[] shapeGlyphArray = {};
@@ -23,7 +20,7 @@ void setup(){
   black = color(0,0,0);
   white = color(255);
   red = color(255,0,0);
-  orange = color(255,160,0);
+  orange = color(127,127,0);
   yellow = color(255,255,0);
   green = color(0,255,0);
   blue  = color(0,0,255);
@@ -256,7 +253,7 @@ int saveKey2index(char localChar){
 
 void doTheThing(int localByte){
 if(localByte == 0300){
-  theta = theta0;side = unit;x=x0;y=y0;currentColor = black;  //rst
+  theta = theta0;side = unit;x=x0;y=y0;  //rst
 }
 if(localByte == 0301){
   println("del"); //del
@@ -364,10 +361,10 @@ if(localByte == 0343){
   arc(x,y,2*side,2*side,theta - thetaStep,theta);//arc-
 }
 if(localByte == 0344){
-  arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcmov
+  arc(x,y,2*side,2*side,theta,theta + thetaStep);theta += thetaStep;//arcmov
 }
 if(localByte == 0345){
-  arc(x,y,2*side,2*side,theta,theta + thetaStep);theta += thetaStep;//arcbak
+  arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcbak
 }
 if(localByte == 0346){
   fill(0);rect(x,y,side,side);noFill();//1rect

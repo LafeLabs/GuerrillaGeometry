@@ -1,4 +1,4 @@
-0300	theta = theta0;side = unit;x=x0;y=y0;currentColor = black;  //rst
+0300	theta = theta0;side = unit;x=x0;y=y0;  //rst
 0301	println("del"); //del
 0302	thetaStep = PI; //180deg
 0303	thetaStep = 2*PI/3; //120deg
@@ -34,8 +34,8 @@
 0341	ellipse(x,y,2*side,2*side);//circle
 0342	arc(x,y,2*side,2*side,theta,theta + thetaStep);//arc+
 0343	arc(x,y,2*side,2*side,theta - thetaStep,theta);//arc-
-0344	arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcmov
-0345	arc(x,y,2*side,2*side,theta,theta + thetaStep);theta += thetaStep;//arcbak
+0344	arc(x,y,2*side,2*side,theta,theta + thetaStep);theta += thetaStep;//arcmov
+0345	arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcbak
 0346	fill(0);rect(x,y,side,side);noFill();//1rect
 0347	fill(255);rect(x,y,side,side);noFill();//0rect
 0350	thetaStep /= 2;	//angle/2

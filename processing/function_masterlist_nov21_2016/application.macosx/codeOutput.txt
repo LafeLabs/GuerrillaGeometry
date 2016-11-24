@@ -1,6 +1,6 @@
 void doTheThing(int localByte){
 if(localByte == 0300){
-	theta = theta0;side = unit;x=x0;y=y0;currentColor = black;  //rst
+	theta = theta0;side = unit;x=x0;y=y0;  //rst
 }
 if(localByte == 0301){
 	println("del"); //del
@@ -108,10 +108,10 @@ if(localByte == 0343){
 	arc(x,y,2*side,2*side,theta - thetaStep,theta);//arc-
 }
 if(localByte == 0344){
-	arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcmov
+	arc(x,y,2*side,2*side,theta,theta + thetaStep);theta += thetaStep;//arcmov
 }
 if(localByte == 0345){
-	arc(x,y,2*side,2*side,theta,theta + thetaStep);theta += thetaStep;//arcbak
+	arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcbak
 }
 if(localByte == 0346){
 	fill(0);rect(x,y,side,side);noFill();//1rect
