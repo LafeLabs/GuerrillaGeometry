@@ -16,6 +16,7 @@ int[] currentGlyph = {};
 String[] shapeGlyphArray = new String[32];
 String[] shapeKeyArray = new String[32];
 String[] shapeAddressArray = new String[32];
+String[] glyphArray0300s = new String[48];
 String keyTable = "12345678qwertyuiasdfghjkzxcvbnm,";
 String keySaveTable = "!@#$%^&*QWERTYUIASDFGHJKZXCVBNM<";
 
@@ -47,7 +48,8 @@ void setup(){
   scaleFactor = 2;
   thetaStep  = PI/3;  
   writeCode();
-  shapeGlyphArray = loadStrings("currentGlyphTable.txt");    
+  shapeGlyphArray = loadStrings("currentGlyphTable.txt"); 
+  glyphArray0300s = loadStrings("currentGlyphTable0300s.txt");
 }
 
 void draw(){
@@ -56,7 +58,9 @@ void draw(){
   drawButtons();
   drawCurrentGlyph();
   drawCursor();
-  println(saveKey2index('R'));
+  drawByteGlyph(0330);
+  drawByteGlyph(0331);
+
 //  noLoop();
 }
 
@@ -66,6 +70,13 @@ void drawGlyph(int[] localGlyph){
     doTheThing(localGlyph[index]);  
   }  
 }
+
+void drawByteGlyph(int localByte){
+ int glyphIndexLocal = localByte - 0300;
+  drawGlyph(commandString2glyph(glyphArray0300s[glyphIndexLocal]));
+}
+
+
 void drawCurrentGlyph(){
   for(int bullshitIndex = 0;bullshitIndex < currentGlyph.length;bullshitIndex++){
     stroke(currentColor); 
