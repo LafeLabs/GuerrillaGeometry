@@ -4,9 +4,8 @@ float theta,theta0,thetaStep;
 float phi, E,theta_magic;
 color currentColor;
 color black,white,red,orange,yellow,green,blue,violet;
-float buttonSide = 40;
+float buttonSide = 50;
 int[] currentGlyph = {};
-
 
 //0304,0313,0337,0337,0337,0335,0306,0350,0350,0335,0332,0331,0334,0334,0336,0336,0336,0332,0306,0334,0350,0350,0334,0332,0331,0335,0306,0335,0331,0350,0350,0335,0304,0334,0330,0335,0332,0335,0332,0335,0332,0335,0332
 
@@ -17,6 +16,7 @@ String[] shapeGlyphArray = new String[32];
 String[] shapeKeyArray = new String[32];
 String[] shapeAddressArray = new String[32];
 String[] glyphArray0300s = new String[48];
+String[] ASCIItable_space2tilde = new String[95];
 String keyTable = "12345678qwertyuiasdfghjkzxcvbnm,";
 String keySaveTable = "!@#$%^&*QWERTYUIASDFGHJKZXCVBNM<";
 
@@ -34,8 +34,8 @@ void setup(){
   noFill();
   stroke(2);
   textSize(8);
-  x0 = 600;
-  y0 = 300;
+  x0 = 0;
+  y0 = 350;
   x = x0;
   y = y0;
   unit = 50;
@@ -50,17 +50,18 @@ void setup(){
   writeCode();
   shapeGlyphArray = loadStrings("currentGlyphTable.txt"); 
   glyphArray0300s = loadStrings("currentGlyphTable0300s.txt");
+  ASCIItable_space2tilde = loadStrings("ASCIItable_space2tilde.txt");
+  saveTableToFile();
 }
 
 void draw(){
   background(255);
   doTheThing(0300);
-  drawButtons();
+  //drawButtons();
+  drawButtonsGlyphs();
   drawCurrentGlyph();
-  drawCursor();
-  drawByteGlyph(0330);
-  drawByteGlyph(0331);
-
+  drawCursor();  
+//  printString(ASCIItable_space2tilde[40]);
 //  noLoop();
 }
 
@@ -99,6 +100,41 @@ void drawCursor(){
   line(x,y,x + side*cos(theta + thetaStep),y+side*sin(theta + thetaStep));
   line(x,y,x + side*cos(theta - thetaStep),y+side*sin(theta - thetaStep));
   strokeWeight(2);
+}
+
+
+void drawButtonsGlyphs(){
+  x = 0;
+  y = side;
+  for(int index = 0;index< 8;index++){
+       drawByteGlyph(0300 + index);
+  }
+  y += side;
+  x = 0;
+  for(int index = 0;index< 8;index++){
+       drawByteGlyph(0310 + index);
+  }
+  y += side;
+  x = 0;
+  for(int index = 0;index< 8;index++){
+       drawByteGlyph(0320 + index);
+  }
+  y += side;
+  x = 0;
+  for(int index = 0;index< 8;index++){
+       drawByteGlyph(0330 + index);
+  }
+  y += side;
+  x = 0;
+  for(int index = 0;index< 8;index++){
+       drawByteGlyph(0340 + index);
+  }
+  y += side;
+  x = 0;
+  for(int index = 0;index< 8;index++){
+       drawByteGlyph(0350 + index);
+  }
+
 }
 
 void drawButtons(){
@@ -212,6 +248,46 @@ void writeCode(){
    saveStrings("codeOutput.txt",codeOutput);  
 }
 
+void saveTableToFile(){
+    //String[] ASCIItable_space2tilde = new String[95];
+  String[] fileString = {};
+  for(int index = 0;index < ASCIItable_space2tilde.length;index++){
+     String thisline = "";
+     thisline += intOctal(040 + index);
+     thisline += ":";
+     thisline += char(040 + index);
+     thisline += ":";
+     thisline += "ASCII character";
+     thisline += ":";
+     thisline += "roctal";
+     thisline += ":";
+     thisline += ASCIItable_space2tilde[index];
+     thisline += ":";
+     thisline += "ENDOFLINE";
+     thisline += intOctal(040 + index);
+     fileString = append(fileString,thisline);
+  }
+  String[] code0300 = loadStrings("0300s2.txt"); 
+  for(int index = 0;index < code0300.length;index++){
+     String thisline = "";
+     thisline += intOctal(0300 + index);
+     thisline += ":";
+     thisline += "name";
+     thisline += ":";
+     thisline += "command action";
+     thisline += ":";
+     thisline += "processing";
+     thisline += ":";
+     thisline += code0300[index];
+     thisline += ":";
+     thisline += "ENDOFLINE";
+     thisline += intOctal(0300 + index);
+     fileString = append(fileString,thisline);
+  }
+  
+  saveStrings("fullTable.txt",fileString);
+}
+
 void mouseClicked(){
   if((mouseX < 8*buttonSide) && (mouseY < 6*buttonSide)){ 
     int ones = int(mouseX/buttonSide);
@@ -230,19 +306,29 @@ void mouseClicked(){
 }
 
 void keyPressed(){
-  if(key == ' '){
-    saveStrings("currentGlyphTable.txt",shapeGlyphArray);
+ // if(key == ' '){
+//    saveStrings("currentGlyphTable.txt",shapeGlyphArray);
+//  }
+//  if(key == '`'){
+//    shapeGlyphArray = loadStrings("currentGlyphTable.txt");    
+//  }
+//  if(saveKey2index(key) != -1){
+//    shapeGlyphArray[saveKey2index(key)] = glyph2commandString(currentGlyph);
+//  }
+//  if(key2index(key) != -1){
+//    currentGlyph = concat(currentGlyph,commandString2glyph(shapeGlyphArray[key2index(key)]));
+//  }
+  
+  if(int(key) >= 040 && int(key) <= 0176){
+    currentGlyph = concat(currentGlyph,commandString2glyph(ASCIItable_space2tilde[int(key) - 040]));
   }
-  if(key == '`'){
-    shapeGlyphArray = loadStrings("currentGlyphTable.txt");    
-  }
-  if(saveKey2index(key) != -1){
-    shapeGlyphArray[saveKey2index(key)] = glyph2commandString(currentGlyph);
-  }
-  if(key2index(key) != -1){
-    currentGlyph = concat(currentGlyph,commandString2glyph(shapeGlyphArray[key2index(key)]));
-  }
+}
 
+void printString(String localString){
+    for(int index = 0;index < localString.length();index++){
+        drawGlyph(commandString2glyph(ASCIItable_space2tilde[(int(localString.charAt(index)) - 040)]));
+    }
+  
 }
 
 int key2index(char localChar){
@@ -406,5 +492,18 @@ if(localByte == 0355){
 }
 if(localByte == 0356){
   thetaStep /= 60; //angle/60
+}
+
+if(x > width){
+   x = 0; 
+}
+if(y > height){
+    y = 0; 
+}
+if(x < -5){
+  x = width;
+}
+if(y < -5){
+  y = height; 
 }
 }
