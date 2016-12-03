@@ -1,7 +1,7 @@
 import processing.serial.*;
-int x = 250;
-int y = 250;
-int side = 30;
+float x = 250;
+float y = 250;
+float side = 30;
 
 Serial myPort;  // Create object from Serial class
 int val;      // Data received from the serial port
@@ -36,6 +36,7 @@ void draw()
   else{
     myString = "";
   }
+  
   background(255);
   
   rect(x,y,side,side);

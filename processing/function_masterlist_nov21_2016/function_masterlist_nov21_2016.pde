@@ -6,6 +6,9 @@ color currentColor;
 color black,white,red,orange,yellow,green,blue,violet;
 float buttonSide = 50;
 int[] currentGlyph = {};
+color[] colorArray = {};
+int cursorIndex = 0;
+int glyphIndex  = 0;
 
 //0304,0313,0337,0337,0337,0335,0306,0350,0350,0335,0332,0331,0334,0334,0336,0336,0336,0332,0306,0334,0350,0350,0334,0332,0331,0335,0306,0335,0331,0350,0350,0335,0304,0334,0330,0335,0332,0335,0332,0335,0332,0335,0332
 
@@ -58,9 +61,13 @@ void draw(){
   background(255);
   doTheThing(0300);
   //drawButtons();
+
   drawButtonsGlyphs();
   drawCurrentGlyph();
+  //editCurrentGlyph();
+
   drawCursor();  
+
 //  printString(ASCIItable_space2tilde[40]);
 //  noLoop();
 }
@@ -82,6 +89,18 @@ void drawCurrentGlyph(){
   for(int bullshitIndex = 0;bullshitIndex < currentGlyph.length;bullshitIndex++){
     stroke(currentColor); 
     doTheThing(currentGlyph[bullshitIndex]);  
+  }
+}
+
+void editCurrentGlyph(){
+  for(int index = 0;index < cursorIndex;index++){
+    stroke(currentColor); 
+    doTheThing(currentGlyph[index]);  
+  }
+  drawCursor();
+  for(int index = cursorIndex;index < currentGlyph.length;index++){
+    stroke(currentColor); 
+    doTheThing(currentGlyph[index]);  
   }
 }
 
@@ -257,13 +276,9 @@ void saveTableToFile(){
      thisline += ":";
      thisline += char(040 + index);
      thisline += ":";
-     thisline += "ASCII character";
-     thisline += ":";
-     thisline += "roctal";
-     thisline += ":";
      thisline += ASCIItable_space2tilde[index];
      thisline += ":";
-     thisline += "ENDOFLINE";
+     thisline += "END";
      thisline += intOctal(040 + index);
      fileString = append(fileString,thisline);
   }
@@ -322,6 +337,23 @@ void keyPressed(){
   if(int(key) >= 040 && int(key) <= 0176){
     currentGlyph = concat(currentGlyph,commandString2glyph(ASCIItable_space2tilde[int(key) - 040]));
   }
+  if(int(key) == 1){//ctrl-a
+     doTheThing(0360);
+     println(cursorIndex);
+  }
+  if(int(key) == 19){//ctrl-s
+     doTheThing(0361);
+     println(cursorIndex);
+  }
+  if(int(key) == 4){//ctrl-d
+     doTheThing(0361);
+     println(glyphIndex);
+  }
+  if(int(key) == 6){  //control-f
+     doTheThing(0361);
+     println(glyphIndex);
+  }
+
 }
 
 void printString(String localString){
@@ -493,6 +525,29 @@ if(localByte == 0355){
 if(localByte == 0356){
   thetaStep /= 60; //angle/60
 }
+if(localByte == 0357){
+  thetaStep *= 60; //angle*60
+}
+if(localByte == 0360){
+  cursorIndex++;
+  if(cursorIndex > currentGlyph.length){
+    cursorIndex = currentGlyph.length;
+  }
+}
+if(localByte == 0361){
+  cursorIndex--; 
+  if(cursorIndex < 0){
+    cursorIndex = 0;
+  }
+
+}
+if(localByte == 0362){
+  glyphIndex++; 
+}
+if(localByte == 0363){
+  glyphIndex--; 
+}
+
 
 if(x > width){
    x = 0; 
