@@ -6,6 +6,7 @@ color currentColor;
 color black,white,red,orange,yellow,green,blue,violet;
 float buttonSide = 50;
 int[] currentGlyph = {};
+int[] currentGlyphGlyph = {};
 color[] colorArray = {};
 int cursorIndex = 0;
 int glyphIndex  = 0;
@@ -13,6 +14,7 @@ import processing.serial.*;
 Serial myPort;  // Create object from Serial class
 String myString;
 int currentCommand = 0;
+String[] glyphArray0300s = new String[48];
 
 
 
@@ -45,17 +47,32 @@ void setup(){
   thetaStep  = PI/3;  
   String portName = Serial.list()[3];
   myPort = new Serial(this, portName, 115200);
+  glyphArray0300s = loadStrings("currentGlyphTable0300s.txt");
 }
 
 void draw(){
   background(255);
   doTheThing(0300);
+  x = width/2;
+  y = height/2;
   currentCommand = getGeometronButton();
   if(currentCommand != -1){
     currentGlyph = append(currentGlyph,currentCommand);
   }
   drawCurrentGlyph();
   drawCursor();  
+  doTheThing(0300);
+  x=0;y=480;
+  if(currentCommand != -1){
+     currentGlyphGlyph = concat(currentGlyphGlyph,commandString2glyph(glyphArray0300s[currentCommand - 0300]));  
+  }
+  doTheThing(0337);
+  drawGlyph(currentGlyphGlyph); 
+}
+
+void drawByteGlyph(int localByte){
+  int glyphIndexLocal = localByte - 0300;
+  drawGlyph(commandString2glyph(glyphArray0300s[glyphIndexLocal]));
 }
 
 int getGeometronButton(){
@@ -154,9 +171,28 @@ int string2octal(String localString){
   return ones + 8*eights + 64*sixtyfours;
 }
 
+void keyPressed(){
+ if(key == 'a'){
+   String[] localStringArray = {};
+   localStringArray = append(localStringArray,glyph2commandString(currentGlyph));
+   saveStrings("currentGlyph.txt",localStringArray);     
+ }
+ if(key == 's'){
+   String[] localStringArray = loadStrings("currentGlyph.txt"); 
+   currentGlyph = commandString2glyph(localStringArray[0]);
+   for(int index = currentGlyphGlyph.length;index > 0;index--){
+      currentGlyphGlyph = shorten(currentGlyphGlyph);
+   }
+   for(int index = 0;index < currentGlyph.length;index++){
+        currentGlyphGlyph = concat(currentGlyphGlyph,commandString2glyph(glyphArray0300s[currentGlyph[index] - 0300]));  
+   }
+ }
+  
+}
+
 void doTheThing(int localByte){
 if(localByte == 0300){
-  theta = theta0;side = unit;x=x0;y=y0;currentColor = black;  //rst
+  scaleFactor = 2;theta = theta0;side = unit;x=x0;y=y0;currentColor = black; thetaStep = PI/3; //rst
 }
 if(localByte == 0301){
   println("del"); //del
@@ -177,7 +213,7 @@ if(localByte == 0306){
   thetaStep = PI/3; //60deg
 }
 if(localByte == 0307){
-  thetaStep = 2*theta_magic; //2*magic
+  thetaStep = PI/4; //2*magic
 }
 if(localByte == 0310){
   scaleFactor = sqrt(2); //sqrt(2)x
