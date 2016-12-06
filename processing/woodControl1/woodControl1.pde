@@ -58,11 +58,7 @@ void draw(){
   doTheThing(0300);
   x = width/2;
   y = height/2;
-  currentCommand = getGeometronButton();
-  if(currentCommand != -1){
-    currentGlyph = append(currentGlyph,currentCommand);
-    cursorIndex++;
-  }
+  updateCurrentGlyph();
   drawCurrentGlyph();
  // drawCursor();  
   doTheThing(0300);
@@ -121,6 +117,23 @@ void drawGlyph(int[] localGlyph){
     stroke(currentColor); 
     doTheThing(localGlyph[index]);  
   }  
+}
+
+void updateCurrentGlyph(){
+   currentCommand = getGeometronButton();
+  if(currentCommand != -1){
+    int[] fooBar = {};
+    for(int index = 0;index < cursorIndex;index++){
+      fooBar = append(fooBar,currentGlyph[index]);
+    }
+    fooBar = append(fooBar,currentCommand);
+    for(int index = cursorIndex;index < currentGlyph.length;index++){
+      fooBar = append(fooBar,currentGlyph[index]);
+    }
+    currentGlyph = fooBar;
+    cursorIndex++;
+  }
+
 }
 
 void drawCurrentGlyph(){
