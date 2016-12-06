@@ -10,13 +10,16 @@ int[] currentGlyphGlyph = {};
 color[] colorArray = {};
 int cursorIndex = 0;
 int glyphIndex  = 0;
+int glyphTableIndex = 0;
 import processing.serial.*;
 Serial myPort;  // Create object from Serial class
 String myString;
 int currentCommand = 0;
 String[] glyphArray0300s = new String[48];
 
-
+//EVERYTHING IS ALWAYS RECURSIVE 
+//RECURSION ALWAYS AND FOREVER
+//NO LAWS NO PROPERTY NO MINING NO NUMBERS NO MINERALS
 
 void setup(){
   black = color(0,0,0);
@@ -58,16 +61,30 @@ void draw(){
   currentCommand = getGeometronButton();
   if(currentCommand != -1){
     currentGlyph = append(currentGlyph,currentCommand);
+    cursorIndex++;
   }
   drawCurrentGlyph();
-  drawCursor();  
+ // drawCursor();  
   doTheThing(0300);
   x=0;y=480;
-  if(currentCommand != -1){
-     currentGlyphGlyph = concat(currentGlyphGlyph,commandString2glyph(glyphArray0300s[currentCommand - 0300]));  
-  }
+//  if(currentCommand != -1){
+ //    currentGlyphGlyph = concat(currentGlyphGlyph,commandString2glyph(glyphArray0300s[currentCommand - 0300]));  
+ // }
   doTheThing(0337);
+  glyph2glyphglyph();
   drawGlyph(currentGlyphGlyph); 
+}
+
+void glyph2glyphglyph(){
+   int[] fooBar = {};
+   for(int index = 0;index < cursorIndex;index++){
+     fooBar  = concat(fooBar,commandString2glyph(glyphArray0300s[currentGlyph[index] - 0300]));
+   }
+   fooBar = append(fooBar,0330);
+   for(int index = cursorIndex;index < currentGlyph.length;index++){
+     fooBar  = concat(fooBar,commandString2glyph(glyphArray0300s[currentGlyph[index] - 0300]));
+   }
+   currentGlyphGlyph = fooBar;
 }
 
 void drawByteGlyph(int localByte){
@@ -107,9 +124,16 @@ void drawGlyph(int[] localGlyph){
 }
 
 void drawCurrentGlyph(){
-  for(int bullshitIndex = 0;bullshitIndex < currentGlyph.length;bullshitIndex++){
+  for(int index = 0;index < cursorIndex;index++){
     stroke(currentColor); 
-    doTheThing(currentGlyph[bullshitIndex]);  
+    doTheThing(currentGlyph[index]);  
+  }
+  drawCursor();
+  if(cursorIndex < currentGlyph.length){
+  for(int index = cursorIndex;index < currentGlyph.length;index++){
+    stroke(currentColor); 
+    doTheThing(currentGlyph[index]);  
+  }
   }
 }
 
@@ -179,15 +203,53 @@ void keyPressed(){
  }
  if(key == 's'){
    String[] localStringArray = loadStrings("currentGlyph.txt"); 
-   currentGlyph = commandString2glyph(localStringArray[0]);
-   for(int index = currentGlyphGlyph.length;index > 0;index--){
-      currentGlyphGlyph = shorten(currentGlyphGlyph);
-   }
-   for(int index = 0;index < currentGlyph.length;index++){
-        currentGlyphGlyph = concat(currentGlyphGlyph,commandString2glyph(glyphArray0300s[currentGlyph[index] - 0300]));  
+   if(localStringArray.length > 0){
+     currentGlyph = commandString2glyph(localStringArray[0]);
+     for(int index = currentGlyphGlyph.length;index > 0;index--){
+        currentGlyphGlyph = shorten(currentGlyphGlyph);
+     }
+     for(int index = 0;index < currentGlyph.length;index++){
+          currentGlyphGlyph = concat(currentGlyphGlyph,commandString2glyph(glyphArray0300s[currentGlyph[index] - 0300]));  
+     }
    }
  }
-  
+ if(key == 'q'){  //move cursor back thru glyph
+    if(cursorIndex > 0){
+      cursorIndex--;
+    }
+ }
+ if(key == 'w'){ //move cursor forward thru glyph
+    if(cursorIndex < currentGlyph.length){
+      cursorIndex++;
+    }
+ }
+ if(key == 'e'){  //push glyph
+ 
+ }
+ if(key == 'r'){ //pop glyph
+ 
+ }
+ if(key == 't'){  //delete glyph
+   deleteGlyph();
+ }  
+}
+
+void pushGlyph(){
+}
+void popGlyph(){
+}
+void deleteGlyph(){ 
+  int[] fooBar = {};
+  int[] gazortBUtt = {};
+  if(cursorIndex != 0){
+    for(int index = 0;index < currentGlyph.length;index++){
+      if(index != cursorIndex - 1){
+        fooBar = append(fooBar,currentGlyph[index]);
+      }
+    }
+    currentGlyph = fooBar;
+    cursorIndex--;
+  }
 }
 
 void doTheThing(int localByte){
