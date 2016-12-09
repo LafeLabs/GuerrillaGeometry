@@ -4,23 +4,30 @@ float theta,theta0,thetaStep;
 float phi, E,theta_magic;
 color currentColor;
 color black,white,red,orange,yellow,green,blue,violet;
-float buttonSide = 50;
 int[] currentGlyph = {};
+int[] glyphStack = {};
 int[] currentGlyphGlyph = {};
 color[] colorArray = {};
 int cursorIndex = 0;
 int glyphIndex  = 0;
 int glyphTableIndex = 0;
-import processing.serial.*;
-Serial myPort;  // Create object from Serial class
-String myString;
 int currentCommand = 0;
 String[] glyphArray0300s = new String[48];
 String[] currentGlyphTable = {};
+String[] currentShapeTable = {};
+String[] currentFontTable = {};
+String[] currentManuscript = {};
 
-//EVERYTHING IS ALWAYS RECURSIVE 
-//RECURSION ALWAYS AND FOREVER
+
+char[] keyArray = {'1','2','3','4','5','6','7','8','q','w','e','r','t','y','u','i','a','s','d','f','g','h','j','k','o'};
+int[] key2commandArray = {0303,0304,0305,0306,0350,0351,0352,0353,0310,0311,0312,0313,0336,0337,0334,0335,0330,0331,0332,0333,0340,0341,0342,0343,0313};
+
+char[] shapeKeyArray = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'};
+int[] key2shapeArray = {0200,0201,0202,0203,0204,0205,0206,0207,0210,0211,0212,0213,0214,0215,0216,0217};
+
+
 //NO LAWS NO PROPERTY NO MINING NO NUMBERS NO MINERALS
+//EVERYTHING IS ALWAYS RECURSIVE 
 
 void setup(){
   black = color(0,0,0);
@@ -48,28 +55,80 @@ void setup(){
   E = 2.7;
   theta_magic = radians(54.7);
   scaleFactor = 2;
-  thetaStep  = PI/3;  
-  String portName = Serial.list()[3];
-  myPort = new Serial(this, portName, 115200);
+  thetaStep  = PI/3;   
   glyphArray0300s = loadStrings("currentGlyphTable0300s.txt");
-
   currentGlyphTable = loadStrings("currentGlyphTable.txt");  
+  currentFontTable = loadStrings("ASCIItable_space2tilde.txt");
+  currentShapeTable  = currentGlyphTable;
   currentGlyph = commandString2glyph(currentGlyphTable[glyphTableIndex]);
   cursorIndex = currentGlyph.length; 
 }
 
 void draw(){
-  background(255);
-  doTheThing(0300);
-  x = width/2;
-  y = height/2;
-  updateCurrentGlyph();
-  drawCurrentGlyph();
+   background(255);
+   doTheThing(0300);
+   x = width/2;
+   y = height/2;
+   drawCurrentGlyph();
   doTheThing(0300);
   x=0;y=480;
   doTheThing(0337);
-  glyph2glyphglyph();
-  drawGlyph(currentGlyphGlyph); 
+    doTheThing(0337);
+  //glyph2glyphglyph();
+  //drawGlyph(currentGlyphGlyph); 
+
+
+}
+ 
+void keyPressed(){
+ // currentGlyphTable = loadStrings("currentGlyphTable.txt");  
+  //currentGlyph = commandString2glyph(currentGlyphTable[glyphTableIndex]);
+   // cursorIndex = currentGlyph.length; 
+
+  currentCommand  = key2command(key);
+  if(currentCommand != -1){
+    int[] fooBar = {};
+    for(int index = 0;index < cursorIndex;index++){
+      fooBar = append(fooBar,currentGlyph[index]);
+    }
+    fooBar = append(fooBar,currentCommand);
+    for(int index = cursorIndex;index < currentGlyph.length;index++){
+      fooBar = append(fooBar,currentGlyph[index]);
+    }
+    currentGlyph = fooBar;
+    cursorIndex++;
+  }
+   if(key == 'z'){  //move cursor back thru glyph
+    if(cursorIndex > 0){
+      cursorIndex--;
+    }
+ }
+ if(key == 'x'){ //move cursor forward thru glyph
+    if(cursorIndex < currentGlyph.length){
+      cursorIndex++;
+    }
+ }
+ if(key == 'c'){  //move to previous glyph in table
+    glyphTableIndex--;
+    if(glyphTableIndex == -1){
+      glyphTableIndex = currentGlyphTable.length - 1;
+    }
+    currentGlyph = commandString2glyph(currentGlyphTable[glyphTableIndex]);
+    cursorIndex = currentGlyph.length;
+ }
+ if(key == 'v'){ //move to next glyph in table
+   glyphTableIndex++;
+   if(glyphTableIndex == currentGlyphTable.length){
+      glyphTableIndex = 0;
+   }
+   currentGlyph = commandString2glyph(currentGlyphTable[glyphTableIndex]);
+   cursorIndex = currentGlyph.length;
+ }
+ if(key == 'b'){  //delete glyph
+   deleteGlyph();
+ }  
+  currentGlyphTable[glyphTableIndex] = glyph2commandString(currentGlyph);
+  saveStrings("currentGlyphTable.txt",currentGlyphTable);  
 }
 
 void glyph2glyphglyph(){
@@ -84,33 +143,14 @@ void glyph2glyphglyph(){
    currentGlyphGlyph = fooBar;
 }
 
-void drawByteGlyph(int localByte){
-  int glyphIndexLocal = localByte - 0300;
-  drawGlyph(commandString2glyph(glyphArray0300s[glyphIndexLocal]));
-}
-
-int getGeometronButton(){
-   int currentCommandLocal = -1;
-   if (myPort.available() > 0) {  // If data is available,
-    String myStringLocal = myPort.readString();         // read it and store it in val
-    myStringLocal = trim(myStringLocal);
-    //print(myString);
-    if(myStringLocal.length() == 4){
-       int ones,eights,sixtyfours;
-       sixtyfours = int(myStringLocal.charAt(1)) - 060;
-       eights = int(myStringLocal.charAt(2)) - 060;
-       ones = int(myStringLocal.charAt(3)) - 060;
-       print(sixtyfours);
-       print(eights);
-       println(ones);
-       currentCommandLocal = 64*sixtyfours + 8*eights + ones;
+int key2command(char keyValue){
+  int commandLocal = -1;
+  for(int index = 0;index < keyArray.length;index++){
+    if(keyValue == keyArray[index]){
+       commandLocal = key2commandArray[index]; 
     }
-
-   }
-   else{
-      currentCommandLocal = -1;
-   } 
-   return currentCommandLocal;
+  }
+  return commandLocal;
 }
 
 void drawGlyph(int[] localGlyph){
@@ -118,23 +158,6 @@ void drawGlyph(int[] localGlyph){
     stroke(currentColor); 
     doTheThing(localGlyph[index]);  
   }  
-}
-
-void updateCurrentGlyph(){
-   currentCommand = getGeometronButton();
-  if(currentCommand != -1){
-    int[] fooBar = {};
-    for(int index = 0;index < cursorIndex;index++){
-      fooBar = append(fooBar,currentGlyph[index]);
-    }
-    fooBar = append(fooBar,currentCommand);
-    for(int index = cursorIndex;index < currentGlyph.length;index++){
-      fooBar = append(fooBar,currentGlyph[index]);
-    }
-    currentGlyph = fooBar;
-    cursorIndex++;
-  }
-
 }
 
 void drawCurrentGlyph(){
@@ -167,6 +190,7 @@ void drawCursor(){
   line(x,y,x + side*cos(theta - thetaStep),y+side*sin(theta - thetaStep));
   strokeWeight(2);
 }
+
 
 int[] commandString2glyph(String localString){
   int[] localIntArray = {};
@@ -209,59 +233,6 @@ int string2octal(String localString){
   return ones + 8*eights + 64*sixtyfours;
 }
 
-void keyPressed(){
- if(key == 'a'){
-   String[] localStringArray = {};
-   localStringArray = append(localStringArray,glyph2commandString(currentGlyph));
-   saveStrings("currentGlyph.txt",localStringArray);     
- }
- if(key == 's'){
-   String[] localStringArray = loadStrings("currentGlyph.txt"); 
-   if(localStringArray.length > 0){
-     currentGlyph = commandString2glyph(localStringArray[0]);
-     for(int index = currentGlyphGlyph.length;index > 0;index--){
-        currentGlyphGlyph = shorten(currentGlyphGlyph);
-     }
-     for(int index = 0;index < currentGlyph.length;index++){
-          currentGlyphGlyph = concat(currentGlyphGlyph,commandString2glyph(glyphArray0300s[currentGlyph[index] - 0300]));  
-     }
-   }
- }
- if(key == 'q'){  //move cursor back thru glyph
-    if(cursorIndex > 0){
-      cursorIndex--;
-    }
- }
- if(key == 'w'){ //move cursor forward thru glyph
-    if(cursorIndex < currentGlyph.length){
-      cursorIndex++;
-    }
- }
- if(key == 'e'){  //move to previous glyph in table
-    glyphTableIndex--;
-    if(glyphTableIndex == -1){
-      glyphTableIndex = currentGlyphTable.length - 1;
-    }
-    currentGlyph = commandString2glyph(currentGlyphTable[glyphTableIndex]);
-    cursorIndex = currentGlyph.length;
- }
- if(key == 'r'){ //move to next glyph in table
-   glyphTableIndex++;
-   if(glyphTableIndex == currentGlyphTable.length){
-      glyphTableIndex = 0;
-   }
-   currentGlyph = commandString2glyph(currentGlyphTable[glyphTableIndex]);
-   cursorIndex = currentGlyph.length;
- }
- if(key == 't'){  //delete glyph
-   deleteGlyph();
- }  
-}
-
-void pushGlyph(){
-}
-void popGlyph(){
-}
 void deleteGlyph(){ 
   int[] fooBar = {};
   int[] gazortBUtt = {};
@@ -273,6 +244,30 @@ void deleteGlyph(){
     }
     currentGlyph = fooBar;
     cursorIndex--;
+  }
+}
+
+void pushGlyph(){
+  if(cursorIndex != 0){
+    glyphStack = append(glyphStack,currentGlyph[cursorIndex - 1]);
+    deleteGlyph();
+  }
+}
+
+void popGlyph(){
+  if(glyphStack.length > 0){
+    currentCommand = glyphStack[glyphStack.length - 1];
+    int[] fooBar = {};
+    for(int index = 0;index < cursorIndex;index++){
+      fooBar = append(fooBar,currentGlyph[index]);
+    }
+    fooBar = append(fooBar,currentCommand);
+    for(int index = cursorIndex;index < currentGlyph.length;index++){
+      fooBar = append(fooBar,currentGlyph[index]);
+    }
+    currentGlyph = fooBar;
+    cursorIndex++;
+    glyphStack = shorten(glyphStack);
   }
 }
 
@@ -380,10 +375,10 @@ if(localByte == 0341){
   ellipse(x,y,2*side,2*side);//circle
 }
 if(localByte == 0342){
-  arc(x,y,2*side,2*side,theta,theta + thetaStep);//arc+
+  arc(x,y,2*side,2*side,theta - thetaStep,theta);//arc-
 }
 if(localByte == 0343){
-  arc(x,y,2*side,2*side,theta - thetaStep,theta);//arc-
+  arc(x,y,2*side,2*side,theta,theta + thetaStep);//arc+
 }
 if(localByte == 0344){
   arc(x,y,2*side,2*side,theta - thetaStep,theta);theta -= thetaStep;//arcmov
@@ -420,6 +415,19 @@ if(localByte == 0356){
 }
 if(localByte == 0357){
   thetaStep *= 60; //angle*60
+}
+
+if(localByte >= 0200 && localByte <= 0277){
+  if(localByte - 0200 < currentGlyphTable.length){
+    drawGlyph(commandString2glyph(currentShapeTable[localByte  - 0200]));
+  }
+}
+
+if(localByte >= 040 && localByte <= 0177){
+   //print a letter based on ASCII and key from font table 
+  if(localByte - 040 < currentFontTable.length){
+     drawGlyph(commandString2glyph(currentFontTable[localByte  - 040]));
+  }
 }
 
 }
