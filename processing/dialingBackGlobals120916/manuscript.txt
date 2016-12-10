@@ -1,0 +1,3 @@
+We begin with a point.  A dot drawn with a pen or a pencil, or on a computer usually a function called “point” or something like that.  
+0202
+We then draw a second point, anywhere, a reasonable distance away, and connect the two with a line using a ruler if it’s with a pen or pencil or a “line” function on a computer or with a plotter.  This may involve some thought and work to get right, but an infinite amount of things can be built on it.  

@@ -6,6 +6,9 @@
 //ALL "TECH" COMPANIES ARE BASED ON FRAUD AND LIES
 //SMASH THE TECHNOCRATIC PRIESTHOOD
 
+//only one layer of recursion works currently, so 0200s can reference 0300s and ascii but not each other
+//probably it will make sense to add about 2 more but after that it gets out of control and data strctures
+//will get awkward
 
 float x,y,x0,y0;
 float side, scaleFactor,unit;
@@ -38,6 +41,14 @@ int[] key2commandArray = {0303,0304,0305,0306,0350,0351,0352,0353,0310,0311,0312
 
 char[] shapeKeyArray = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'};
 int[] key2shapeArray = {0200,0201,0202,0203,0204,0205,0206,0207,0210,0211,0212,0213,0214,0215,0216,0217};
+
+int keyboardMode = 1;
+//0 is 0300 commands
+//1 is ascii based keyboard direct write
+//2 is shape table
+//control keys are seperate, control-k selects keyboard mode
+//other control characters do cursor move commands
+//control k is 11 decimal which is 013 octal
 
 void setup(){
   black = color(0,0,0);
@@ -79,9 +90,23 @@ void setup(){
 
 void draw(){
   
-  currentGlyph = recursionTest;
+//  currentGlyph = recursionTest;
+  background(255);
+  currentCommand = 0300;
+  doTheThing();
   drawCurrentGlyph();
-  noLoop();
+ // noLoop();
+}
+
+
+void updateCurrentGlyph(){
+  if(cursorOn){
+    
+    
+  }
+  else{
+   currentGlyph = append(currentGlyph,currentCommand); 
+  }
 }
 
 void commandString2glyph(){
@@ -238,11 +263,41 @@ void popGlyph(){
   }
 }
 
+void keyPressed(){
+ if(key == 013){
+    keyboardMode++;
+    if(keyboardMode > 2){
+      keyboardMode = 0;
+    }
+ }
+ if(keyboardMode ==1){
+   if(cursorOn){
+    for(int index = 0;index < cursorIndex;index++){
+      
+      
+    }
+    
+    for(int index = cursorIndex;index < currentGlyph.length;index++){
+        
+    }
+     
+     cursorIndex++; 
+   }
+   else{
+     currentGlyph = append(currentGlyph,int(key));
+   }
+ }
+ if(keyboardMode == 0){
+   
+   
+ }
+  
+}
 
 void doTheThing(){
   int localByte = currentCommand;
 if(localByte == 0300){
-  scaleFactor = 2;theta = theta0;side = unit;x=x0;y=y0;currentColor = black; thetaStep = PI/3; //rst
+  scaleFactor = 2;theta = theta0;side = unit;x=x0;y=y0;currentColor = black; thetaStep = PI/2;//rst
 }
 if(localByte == 0301){
   println("del"); //del
