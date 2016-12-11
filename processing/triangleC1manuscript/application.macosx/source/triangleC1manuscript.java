@@ -1,3 +1,21 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import processing.pdf.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class triangleC1manuscript extends PApplet {
+
 //EVERYTHING IS PHYSICAL
 //EVERYTHING IS GLOBAL
 //EVERYTHING IS ALWAYS RECURSIVE
@@ -11,14 +29,14 @@
 //here file is for AG-C1, the first construction, the 
 //equillateral triangle
 
-import processing.pdf.*;
+
 
 float x,y,x0,y0,spellX,spellY;
 float side, scaleFactor,unit;
 float theta,theta0,thetaStep;
 float phi, E,theta_magic;
-color currentColor;
-color black,white,red,orange,yellow,green,blue,violet;
+int currentColor;
+int black,white,red,orange,yellow,green,blue,violet;
 int[] currentGlyph = {};
 int[] glyphStack = {};
 int cursorIndex = 0;
@@ -49,7 +67,7 @@ int keyboardMode = 0;
 //other control characters do cursor move commands
 //control k is 11 decimal which is 013 octal
 
-void setup(){
+public void setup(){
   black = color(0,0,0);
   white = color(255);
   red = color(255,0,0);
@@ -59,7 +77,7 @@ void setup(){
   blue  = color(0,0,255);
   violet = color(255,0,255);
 //  size(600,700,PDF,"filename.pdf");
-  size(600,700);
+  
   background(255);
   noFill();
   stroke(0);
@@ -74,8 +92,8 @@ void setup(){
   side = unit;
   theta  = 0;
   theta0 = 0;
-  phi  = 1.618;
-  E = 2.718;
+  phi  = 1.618f;
+  E = 2.718f;
   scaleFactor = 2;
   thetaStep  = 2*PI/3;   
   glyphArray0300s = loadStrings("currentGlyphTable0300s.txt");
@@ -89,7 +107,7 @@ void setup(){
   
 }
 
-void draw(){
+public void draw(){
   background(255);
   doTheThing(0300);
   currentGlyph = commandString2glyph(currentManuscriptFigures[pageIndex]);  
@@ -107,7 +125,7 @@ void draw(){
   drawCurrentGlyph();
 }
 
-void updateCurrentGlyph(){
+public void updateCurrentGlyph(){
     if(currentCommand != -1){
     int[] localGlyph = {};
     
@@ -130,7 +148,7 @@ void updateCurrentGlyph(){
   }  
 }
 
-void keyPressed(){
+public void keyPressed(){
  if(key == ','){
      pageIndex--;
      if(pageIndex < 0){
@@ -151,7 +169,7 @@ void keyPressed(){
     }
  }
  if(keyboardMode == 0){   //typewriter mode
-   currentCommand = int(key);
+   currentCommand = PApplet.parseInt(key);
    updateCurrentGlyph();
  }
  if(keyboardMode == 1){   //draw mode
@@ -170,14 +188,14 @@ void keyPressed(){
  }
 }
 
-void drawGlyph(int[] localGlyph){
+public void drawGlyph(int[] localGlyph){
   for(int index = 0;index < localGlyph.length;index++){
     stroke(currentColor); 
     doTheThing(localGlyph[index]);  
   }  
 }
 
-void drawCurrentGlyph(){
+public void drawCurrentGlyph(){
   if(cursorOn){
     for(int index = 0;index < cursorIndex;index++){
       stroke(currentColor); 
@@ -199,7 +217,7 @@ void drawCurrentGlyph(){
   }
 }
 
-void drawCursor(){
+public void drawCursor(){
   strokeWeight(2);
   stroke(color(255,0,0));
   line(x,y,x + scaleFactor*side*cos(theta),y+scaleFactor*side*sin(theta));
@@ -216,7 +234,7 @@ void drawCursor(){
   strokeWeight(2);
 }
 
-void spellCurrentGlyph(){
+public void spellCurrentGlyph(){
   scaleFactor = 2;
   thetaStep = PI/2;
   if(cursorOn){
@@ -239,19 +257,19 @@ void spellCurrentGlyph(){
   }
 }
 
-int string2command(String localString){
-  int sixtyfours = int(localString.charAt(1)) - 060; 
-  int eights = int(localString.charAt(2)) - 060; 
-  int ones = int(localString.charAt(3)) - 060; 
+public int string2command(String localString){
+  int sixtyfours = PApplet.parseInt(localString.charAt(1)) - 060; 
+  int eights = PApplet.parseInt(localString.charAt(2)) - 060; 
+  int ones = PApplet.parseInt(localString.charAt(3)) - 060; 
   currentCommand =  ones + 8*eights + 64*sixtyfours;
   return currentCommand;
 }
 
-String command2string(int localCommand){
+public String command2string(int localCommand){
    String localString = "";
-   char ones = char((localCommand%8)+060);
-   char eights = char(((localCommand >> 3)&7) + 060);
-   char sixtyfours = char(((localCommand >> 6)&7) + 060);
+   char ones = PApplet.parseChar((localCommand%8)+060);
+   char eights = PApplet.parseChar(((localCommand >> 3)&7) + 060);
+   char sixtyfours = PApplet.parseChar(((localCommand >> 6)&7) + 060);
    localString += '0';
    localString += sixtyfours;
    localString += eights;
@@ -259,7 +277,7 @@ String command2string(int localCommand){
    return localString;
 }
 
-String glyph2commandString(int[] localGlyph){
+public String glyph2commandString(int[] localGlyph){
   String localString = "";  
   for(int index = 0;index < localGlyph.length;index++){
       localString += command2string(localGlyph[index]);
@@ -271,7 +289,7 @@ String glyph2commandString(int[] localGlyph){
   return localString;
 }
 
-int[] commandString2glyph(String localString){
+public int[] commandString2glyph(String localString){
   int[] localIntArray = {};
   String[] localStringArray  = split(localString,',');
   for(int index = 0;index < localStringArray.length;index++){
@@ -280,15 +298,15 @@ int[] commandString2glyph(String localString){
   return localIntArray;
 }
 
-int[] textString2glyph(String localString){
+public int[] textString2glyph(String localString){
   int[] localIntArray = {};
   for(int index = 0;index < localString.length();index++){
-      localIntArray = append(localIntArray,int(localString.charAt(index)));
+      localIntArray = append(localIntArray,PApplet.parseInt(localString.charAt(index)));
   }
   return localIntArray;
 }
 
-void deleteGlyph(){ 
+public void deleteGlyph(){ 
   int[] localGlyph = {};
   if(cursorIndex != 0){
     for(int index = 0;index < currentGlyph.length;index++){
@@ -301,14 +319,14 @@ void deleteGlyph(){
   }
 }
 
-void pushGlyph(){
+public void pushGlyph(){
   if(cursorIndex != 0){
     glyphStack = append(glyphStack,currentGlyph[cursorIndex - 1]);
     deleteGlyph();
   }
 }
 
-void popGlyph(){
+public void popGlyph(){
   if(glyphStack.length > 0){
     currentCommand = glyphStack[glyphStack.length - 1];
     int[] fooBar = {};
@@ -326,7 +344,7 @@ void popGlyph(){
 
 
 
-int key2command(char localChar){
+public int key2command(char localChar){
   int commandLocal = -1;
   for(int index = 0;index < keyArray.length;index++){
     if(localChar == keyArray[index]){
@@ -336,7 +354,7 @@ int key2command(char localChar){
   return commandLocal;
 }
 
-int key2shape(char localChar){
+public int key2shape(char localChar){
   int commandLocal = -1; 
   for(int index = 0;index < shapeKeyArray.length;index++){
     if(localChar == shapeKeyArray[index]){
@@ -347,17 +365,17 @@ int key2shape(char localChar){
 }
 
 
-void cursorPositionForward(){
+public void cursorPositionForward(){
     if(cursorIndex < currentGlyph.length){
       cursorIndex++;
     }
 }
-void cursorPositionBack(){
+public void cursorPositionBack(){
     if(cursorIndex > 0){
       cursorIndex--;
     }
 }
-void nextGlyphInTable(){
+public void nextGlyphInTable(){
    glyphTableIndex++;
    if(glyphTableIndex == currentGlyphTable.length){
       glyphTableIndex = 0;
@@ -366,7 +384,7 @@ void nextGlyphInTable(){
    cursorIndex = currentGlyph.length;
 
 }
-void previousGlyphInTable(){ 
+public void previousGlyphInTable(){ 
     glyphTableIndex--;
     if(glyphTableIndex == -1){
       glyphTableIndex = currentGlyphTable.length - 1;
@@ -375,7 +393,7 @@ void previousGlyphInTable(){
     cursorIndex = currentGlyph.length;
 }
 
-void doTheThing(int localByte){
+public void doTheThing(int localByte){
 
 if(localByte == 0010){
   cursorPositionBack();
@@ -570,4 +588,14 @@ if(y> height + side){
 if(y < -side){
    y += height; 
 }
+}
+  public void settings() {  size(600,700); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "triangleC1manuscript" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
