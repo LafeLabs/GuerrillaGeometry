@@ -6,13 +6,7 @@
 //ALL "TECH" COMPANIES ARE BASED ON FRAUD AND LIES
 //SMASH THE TECHNOCRATIC PRIESTHOOD
 
-//Now I narrow, and make a reader/editor specifically for
-//Action Geometry, one construction at a time, this
-//here file is for AG-C1, the first construction, the 
-//equillateral triangle
-
-import processing.pdf.*;
-
+// simplified CAD program designed to stand alone, with trinangleC1 as the one shape(and some minor variations thereon
 float x,y,x0,y0,spellX,spellY;
 float side, scaleFactor,unit;
 float theta,theta0,thetaStep;
@@ -22,7 +16,7 @@ color black,white,red,orange,yellow,green,blue,violet;
 int[] currentGlyph = {};
 int[] glyphStack = {};
 int cursorIndex = 0;
-boolean cursorOn = false;
+boolean cursorOn = true;
 int glyphIndex  = 0;
 int glyphTableIndex = 0;
 int currentCommand = 0;
@@ -36,12 +30,12 @@ String[] currentManuscriptFigures = {};
 int[] currentManuscriptDescriptorGlyph = {};//this should perhaps be the first element of the actual doc by convention
 int pageIndex = 0;
 int pageMax = 6;
-char[] keyArray = {'2','6','q','w','a','s','d','f','g','h','j','k','z','x'};
-int[] key2commandArray = {0303,0306,0350,0351,0330,0331,0332,0333,0334,0335,0336,0337,0340,0341};
+char[] keyArray = {'3','4','5','6','7','8','9','0','q','w','e','r','t','a','s','d','f','g','h','j','k','z','x','c'};
+int[] key2commandArray = {0303,0304,0305,0306,0350,0351,0352,0353,0310,0311,0312,0313,0315,0330,0331,0332,0333,0334,0335,0336,0337,0340,0341,0342};
 char[] shapeKeyArray = {'a','b','c'};
 int[] key2shapeArray = {0200,0201,0202};
 
-int keyboardMode = 0;
+int keyboardMode = 1;
 //0 is ascii based keyboard direct write
 //1 is 0300 commands
 //2 is shape table
@@ -84,28 +78,19 @@ void setup(){
   currentShapeTable = loadStrings("currentShapeTable.txt"); 
   currentFontTable = loadStrings("ASCIItable_space2tilde.txt");
   cursorIndex = currentGlyph.length; 
-  currentManuscript = loadStrings("manuscript.txt");
-  currentManuscriptFigures = loadStrings("manuscriptFigures.txt");
-  currentGlyph = commandString2glyph(currentManuscriptFigures[1]);  
   
 }
 
 void draw(){
   background(255);
   doTheThing(0300);
-  currentGlyph = commandString2glyph(currentManuscriptFigures[pageIndex]);  
+  doTheThing(0303);
   drawCurrentGlyph();
   doTheThing(0300);
-  x = 0;
-  y = 40;
-  side = 40;
+  x=0;
+  y=25;
+  side = 25;
   spellCurrentGlyph();
-  doTheThing(0300);
-  x = 10;
-  y = 400;
-  currentGlyph = textString2glyph(currentManuscript[pageIndex]);
-  side = 15;
-  drawCurrentGlyph();
 }
 
 void updateCurrentGlyph(){
@@ -125,6 +110,7 @@ void updateCurrentGlyph(){
       for(int index = 0;index < currentGlyph.length;index++){
         localGlyph = append(localGlyph,currentGlyph[index]);
       }        
+      localGlyph = append(localGlyph,currentCommand);
     }
     currentGlyph = localGlyph;
     cursorIndex++;
@@ -503,7 +489,7 @@ if(localByte == 0341){
   ellipse(x,y,2*side,2*side);//circle
 }
 if(localByte == 0342){
-  arc(x,y,2*side,2*side,theta - thetaStep,theta);//arc-
+  arc(x,y,2*side,2*side,theta - thetaStep,theta+thetaStep);//arc +/-
 }
 if(localByte == 0343){
   arc(x,y,2*side,2*side,theta,theta + thetaStep);//arc+

@@ -1,0 +1,18 @@
+width = 600;
+height = 900;
+textX = 100;
+textY = 400;
+spellX = 100;
+spellY = 400;
+char[] keyArray = {'2','6','q','w','a','s','d','f','g','h','j','k','z','x'};
+int[] key2commandArray = {0303,0306,0350,0351,0330,0331,0332,0333,0334,0335,0336,0337,0340,0341};
+x0 = 300;
+y0 = 600;
+theta  = 0;
+theta0 = 0;
+scaleFactor = 2;
+thetaStep  = 2*PI/3;   
+stroke(1);
+unit = 100;
+side = unit;
+
