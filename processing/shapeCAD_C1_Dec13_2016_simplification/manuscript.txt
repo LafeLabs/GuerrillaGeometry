@@ -1,0 +1,7 @@
+We begin with a point.    
+We then draw a second point, anywhere, a reasonable distance away, and connect the two with a line.
+Then draw a circle around another point.
+Then draw a line through the center and mark the intersection.
+Complete the vesica pisces with a second circle centered on the edge of the first.
+Mark where the circles meet with a point. 
+Connect the points to make the triangle, draw circle around third point.
